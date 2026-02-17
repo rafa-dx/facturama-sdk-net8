@@ -1,4 +1,6 @@
-﻿namespace Facturama.Sdk.Core.Models.Complements.Waybill
+﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Waybill;
+
+namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
     public sealed record TiposFigura
     {
