@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace facturama-sdk-net8.src.facturama.Sdk.Core.Exceptions
+﻿namespace Facturama.Sdk.Core.Exceptions
 {
     /// <summary>
     /// Excepción lanzada cuando hay problemas de conectividad con la API.
