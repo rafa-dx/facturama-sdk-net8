@@ -1,3 +1,7 @@
+using Facturama.Sdk.Core.Enums;
+using Microsoft.Extensions.Options;
+using System.ComponentModel.DataAnnotations;
+
 namespace Facturama.Sdk.Configuration
 {
     /// <summary>

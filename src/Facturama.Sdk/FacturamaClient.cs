@@ -1,10 +1,9 @@
-﻿// src/Facturama.Sdk/FacturamaClient.cs
-using FacturamaAPI.src.Facturama.Sdk.Configuration;
-using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using FacturamaAPI.src.Facturama.Sdk.Services;
+﻿using Facturama.Sdk.Configuration;
+using Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
+
 
 namespace Facturama.Sdk;
 

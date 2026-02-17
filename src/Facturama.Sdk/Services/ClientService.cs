@@ -1,11 +1,12 @@
-﻿// src/Facturama.Sdk/Services/ClientService.cs
-using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Exceptions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Request; 
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Responses;
+﻿
+using Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Core.Exceptions;
+using Facturama.Sdk.Core.Models.Request; 
+using Facturama.Sdk.Core.Models.Common;
+using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
-namespace FacturamaAPI.src.Facturama.Sdk.Services;
+
+namespace Facturama.Sdk.Services;
 
 /// <summary>
 /// Implementación del servicio de gestión de clientes de Facturama.

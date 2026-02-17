@@ -1,13 +1,9 @@
-﻿// src/Facturama.Sdk/Infrastructure/Authentication/AuthenticationHeaderHandler.cs
-using FacturamaAPI.src.Facturama.Sdk.Configuration;
+﻿using Facturama.Sdk.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace Facturama.Sdk.Infrastructure.Authentication;
 

@@ -1,6 +1,6 @@
 namespace Facturama.Sdk.Configuration
 {
-   {
+   
     /// <summary>
     /// Configuración de la política de reintentos para peticiones HTTP.
     /// </summary>
@@ -174,5 +174,4 @@ namespace Facturama.Sdk.Configuration
         /// </summary>
         Exponential = 2
     }
-}
 }
