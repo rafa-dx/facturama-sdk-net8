@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Request
+{
+    public sealed record ProductRequest
+    {
+
+        [JsonPropertyName("Unit")]
+        public string Unit { get; init; }
+
+        [JsonPropertyName("UnitCode")]
+        public string UnitCode { get; init; }
+
+        [JsonPropertyName("IdentificationNumber")]
+        public string IdentificationNumber { get; init; }
+
+        [JsonPropertyName("Name")]
+        public string Name { get; init; }
+
+        [JsonPropertyName("Description")]
+        public string Description { get; init; }
+
+        [JsonPropertyName("Price")]
+        public decimal Price { get; init; }
+
+        [JsonPropertyName("CodeProdServ")]
+        public string CodeProdServ { get; init; }
+
+        [JsonPropertyName("CuentaPredial")]
+        public string CuentaPredial { get; init; }
+
+        [JsonPropertyName("ObjetoImp")]
+        public string ObjetoImp { get; init; }
+
+        [JsonPropertyName("Taxes")]
+        public IEnumerable<Common.Tax> Taxes { get; init; }
+    }
+}
