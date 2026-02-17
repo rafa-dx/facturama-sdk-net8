@@ -3,7 +3,7 @@ namespace Facturama.Sdk.Core.Abstractions
     public interface IFacturamaHttpClient
     {
         Task<TResponse> GetAsync<TResponse>(
-            string endpoint, 
+            string endpoint,
             Dictionary<string, string?>? queryParams = null,
             CancellationToken cancellationToken = default);
 
@@ -22,3 +22,4 @@ namespace Facturama.Sdk.Core.Abstractions
             string endpoint,
             CancellationToken cancellationToken = default);
     }
+}
