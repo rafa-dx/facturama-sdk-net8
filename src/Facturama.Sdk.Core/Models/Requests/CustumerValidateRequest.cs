@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Request
+namespace Facturama.Sdk.Core.Models.Request
 {
     public sealed record CustumerValidateRequest
     {

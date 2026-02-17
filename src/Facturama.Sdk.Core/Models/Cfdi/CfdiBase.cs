@@ -1,9 +1,9 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Enums;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements;
+﻿using Facturama.Sdk.Core.Enums;
+using Facturama.Sdk.Core.Models.Complements;
 using System.Text.Json.Serialization;
 
 
-namespace src.Facturama.Sdk.Core.Models.Cfdi
+namespace Facturama.Sdk.Core.Models.Cfdi
 {
     public abstract record CfdiBase
     {
@@ -17,7 +17,7 @@ namespace src.Facturama.Sdk.Core.Models.Cfdi
         public string Serie { get; init; }
 
         [JsonPropertyName("CfdiType")]
-        public CfdiType CfdiType { get; init; }
+        public EnumsCfdis CfdiType { get; init; }
 
         [JsonPropertyName("PaymentForm")]
         public string PaymentForm { get; init; }

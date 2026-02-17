@@ -1,4 +1,4 @@
-﻿namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Request
+﻿namespace Facturama.Sdk.Core.Models.Request
 {
     public sealed record ImageRequest
     {

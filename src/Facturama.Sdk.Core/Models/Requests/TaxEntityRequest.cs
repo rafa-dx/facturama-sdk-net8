@@ -1,6 +1,6 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
+﻿using Facturama.Sdk.Core.Models.Common;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Request
+namespace Facturama.Sdk.Core.Models.Request
 {
     public sealed record TaxEntityRequest
     {  

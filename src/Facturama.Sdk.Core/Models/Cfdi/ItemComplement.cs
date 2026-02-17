@@ -1,13 +1,9 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.ThirdPartyAccount;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.EducationalInstitution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Facturama.Sdk.Core.Models.Complements.ThirdPartyAccount;
+using Facturama.Sdk.Core.Models.Complements.EducationalInstitution;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
-namespace src.Facturama.Sdk.Core.Models.Cfdi
+
+namespace Facturama.Sdk.Core.Models.Cfdi
 {
     public sealed record ItemComplement
     {

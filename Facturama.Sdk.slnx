@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Facturama.Sdk.Samples.Console/Facturama.Sdk.Samples.Console.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Facturama.Sdk.Core/Facturama.Sdk.Core.csproj" />
+    <Project Path="src/Facturama.Sdk.DependencyInjection/Facturama.Sdk.DependencyInjection.csproj" />
+    <Project Path="src/Facturama.Sdk/Facturama.Sdk.csproj" />
+  </Folder>
+</Solution>

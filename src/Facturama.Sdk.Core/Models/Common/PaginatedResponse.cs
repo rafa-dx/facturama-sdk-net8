@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace src.Facturama.Sdk.Core.Models.Common
+
+namespace Facturama.Sdk.Core.Models.Common
 {
     public sealed record  PaginatedResponse<T>
     {

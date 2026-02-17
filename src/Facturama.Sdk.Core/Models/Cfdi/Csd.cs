@@ -1,5 +1,5 @@
 ﻿
-namespace src.Facturama.Sdk.Core.Models.Cfdi
+namespace Facturama.Sdk.Core.Models.Cfdi
 {
     public sealed record Csd
     {

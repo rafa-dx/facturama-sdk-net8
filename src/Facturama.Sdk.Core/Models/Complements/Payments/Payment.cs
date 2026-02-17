@@ -1,7 +1,7 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Payments;
+﻿using Facturama.Sdk.Core.Models.Common;
+using Facturama.Sdk.Core.Models.Complements.Payments;
 
-namespace src.Facturama.Sdk.Core.Models.Complements.Payments
+namespace Facturama.Sdk.Core.Models.Complements.Payments
 {
     public sealed record Payment
     {

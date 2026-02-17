@@ -1,14 +1,14 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Donation;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.ForeignTrade;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Payments;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Payroll;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.TaxLegends;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Complements.Waybill;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Responses;
+﻿using Facturama.Sdk.Core.Models.Complements.Donation;
+using Facturama.Sdk.Core.Models.Complements.ForeignTrade;
+using Facturama.Sdk.Core.Models.Complements.Payments;
+using Facturama.Sdk.Core.Models.Complements.Payroll;
+using Facturama.Sdk.Core.Models.Complements.TaxLegends;
+using Facturama.Sdk.Core.Models.Complements.Waybill;
+using Facturama.Sdk.Core.Models.Responses;
 using System.Text.Json.Serialization;
 
 
-namespace src.Facturama.Sdk.Core.Models.Complements
+namespace Facturama.Sdk.Core.Models.Complements
 {
     public sealed record CfdiComplement
     {

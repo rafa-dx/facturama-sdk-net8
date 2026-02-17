@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace src.Facturama.Sdk.Core.Models.Cfdi
+namespace Facturama.Sdk.Core.Models.Cfdi
 {
     public sealed record Issuer
     {

@@ -1,11 +1,7 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Facturama.Sdk.Core.Models.Common;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Responses.Catalogs.Cfdi
+
+namespace Facturama.Sdk.Core.Models.Responses.Catalogs.Cfdi
 {
     public sealed record ProductServicesCatalog : CatalogBase
     {

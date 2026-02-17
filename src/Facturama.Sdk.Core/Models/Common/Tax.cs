@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 
-namespace src.Facturama.Sdk.Core.Models.Common
+namespace Facturama.Sdk.Core.Models.Common
 {
     public sealed record Tax
     {

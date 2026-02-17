@@ -1,7 +1,7 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
+﻿using Facturama.Sdk.Core.Models.Common;
 using System.Text.Json.Serialization;
 
-namespace src.Facturama.Sdk.Core.Models.Cfdi
+namespace Facturama.Sdk.Core.Models.Cfdi
 {
     public sealed record Receiver
     {

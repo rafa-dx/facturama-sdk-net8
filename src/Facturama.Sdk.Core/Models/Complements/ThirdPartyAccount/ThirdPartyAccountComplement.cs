@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 
-namespace src.Facturama.Sdk.Core.Models.Complements.ThirdPartyAccount
+namespace Facturama.Sdk.Core.Models.Complements.ThirdPartyAccount
 {
     public sealed record ThirdPartyAccountComplement
     {

@@ -1,12 +1,9 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Models.Cfdi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using Facturama.Sdk.Core.Models.Cfdi;
 
-namespace src.Facturama.Sdk.Core.Models.Complements.ForeignTrade
+using System.Text.Json.Serialization;
+
+
+namespace Facturama.Sdk.Core.Models.Complements.ForeignTrade
 {
     public sealed record ForeignTradeComplement
     {
