@@ -1,5 +1,4 @@
 ﻿using Facturama.Sdk.Core.Models.Common;
-using Facturama.Sdk.Core.Models.Complements.Payments;
 
 namespace Facturama.Sdk.Core.Models.Complements.Payments
 {
