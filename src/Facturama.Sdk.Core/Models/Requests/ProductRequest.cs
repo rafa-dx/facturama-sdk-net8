@@ -5,6 +5,8 @@ namespace Facturama.Sdk.Core.Models.Request
 {
     public sealed record ProductRequest
     {
+        [JsonPropertyName("Id")]
+        public string Id { get; init; }
 
         [JsonPropertyName("Unit")]
         public string Unit { get; init; }
@@ -21,6 +23,9 @@ namespace Facturama.Sdk.Core.Models.Request
         [JsonPropertyName("Description")]
         public string Description { get; init; }
 
+        [JsonPropertyName("Description")]
+        public string Category { get; init; }
+
         [JsonPropertyName("Price")]
         public decimal Price { get; init; }
 
@@ -29,6 +34,9 @@ namespace Facturama.Sdk.Core.Models.Request
 
         [JsonPropertyName("CuentaPredial")]
         public string CuentaPredial { get; init; }
+
+        [JsonPropertyName("CuentasPredial")]
+        public IReadOnlyCollection<string>? CuentasPredial { get; init; }
 
         [JsonPropertyName("ObjetoImp")]
         public string ObjetoImp { get; init; }

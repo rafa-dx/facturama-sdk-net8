@@ -17,6 +17,9 @@ namespace Facturama.Sdk.Core.Models.Responses
         [JsonPropertyName("IdentificationNumber")]
         public string IdentificationNumber { get; init; }
 
+        [JsonPropertyName("Category")]
+        public string Category { get; init; }
+
         [JsonPropertyName("Name")]
         public string Name { get; init; }
 
@@ -31,6 +34,10 @@ namespace Facturama.Sdk.Core.Models.Responses
 
         [JsonPropertyName("CuentaPredial")]
         public string CuentaPredial { get; init; }
+
+
+        [JsonPropertyName("CuentasPredial")]
+        public IReadOnlyCollection<string>? CuentasPredial { get; init; }
 
         [JsonPropertyName("ObjetoImp")]
         public string ObjetoImp { get; init; }

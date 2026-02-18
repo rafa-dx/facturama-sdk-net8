@@ -3,7 +3,7 @@ using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Responses;
 
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Abstractions
+namespace Facturama.Sdk.Core.Abstractions
 {
     public interface ICfdiService
     {

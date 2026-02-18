@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Abstractions
+namespace Facturama.Sdk.Core.Abstractions
 {
-    internal interface IBranchOfficeService
+    public interface IBranchOfficeService
     {
     }
 }

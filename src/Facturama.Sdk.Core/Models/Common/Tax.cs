@@ -22,5 +22,8 @@ namespace Facturama.Sdk.Core.Models.Common
 
         [JsonPropertyName("IsQuota")]
         public bool IsQuota { get; init; }
+
+        [JsonPropertyName("IsFederalTax")]
+        public bool IsFederalTax { get; init; }
     }
 }
