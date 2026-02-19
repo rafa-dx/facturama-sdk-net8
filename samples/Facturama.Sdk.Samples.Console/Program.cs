@@ -1,10 +1,10 @@
-﻿// Facturama.Sdk.Samples.Console/Program.cs
+﻿
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
 using Microsoft.Extensions.Hosting;
-using FacturamaAPI.src.Facturama.Sdk.Core.Exceptions;
+using Facturama.Sdk.Core.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Facturama.Sdk.DependencyInjection;
 using Facturama.Sdk.Samples.ConsoleApp.WebApiExamples;
@@ -13,7 +13,7 @@ using Facturama.Sdk.Samples.ConsoleApp.WebApiExamples;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((context, config) =>
     {
-        config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        config.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true);
     })
     .ConfigureServices((context, services) =>
     {
@@ -24,7 +24,8 @@ var host = Host.CreateDefaultBuilder(args)
         services.AddTransient<Application>();
         //WebAPIExamples
         //services.AddTransient<ClientExamples>();
-        services.AddTransient<IExample, ClientExamples>();
+        services.AddTransient<IExample, ClientsExamples>();
+        services.AddTransient<IExample, ProductsExample>();
     })
     .ConfigureLogging(logging =>
     {

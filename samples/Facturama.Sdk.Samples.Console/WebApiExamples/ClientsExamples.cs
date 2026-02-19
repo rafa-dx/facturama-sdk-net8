@@ -1,23 +1,20 @@
 ﻿using Facturama.Sdk.Samples.ConsoleApp.Helpers;
+using Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Core.Exceptions;
+using Facturama.Sdk.Core.Models.Common;
 using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Exceptions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 {
-    public class ClientExamples : IExample
+    public class ClientsExamples : IExample
     {
         private readonly IFacturamaClient _facturama;
 
         public string Name => "1";
         public string Description => "CRUD clientes";
 
-        public ClientExamples(IFacturamaClient facturama)
+        public ClientsExamples(IFacturamaClient facturama)
         {
             _facturama = facturama;
 
@@ -33,6 +30,8 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                 //await ListPagedClientsExample();
                 //await UpdateClientExample();
                 //await FindClientByRfcExample();
+                //await GetClientByIdExample();
+                //await DeleteClientExample();
 
 
             }
@@ -52,7 +51,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             var clients = await _facturama.Clients.ListAsync();
 
-            System.Console.WriteLine($"Total de clientes: {clients.Count}");
+            Console.WriteLine($"Total de clientes: {clients.Count}");
 
             foreach (var client in clients)
             {
@@ -64,16 +63,16 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         public async Task CreateClientExample()
         {
             Console.WriteLine("\nCreando un nuevo cliente...");
-            var newClientRequest = new FacturamaAPI.src.Facturama.Sdk.Core.Models.Request.ClientRequest
+            var newClientRequest = new Core.Models.Request.ClientRequest
             {
                 Id = "",
                 Rfc = "URE180429TM6",
                 Name = "UNIVERSIDAD ROBOTICA ESPAÑOLA",
                 FiscalRegime = "601",
                 CfdiUse = "G03",
-                TaxResidence = null,
-
+                TaxResidence = "30230",
                 Email = "ejemplo@ejemplo.mx",
+                NumRegIdTrib = "131494-1055",
                 EmailOp1 = null,
                 TaxZipCode = "30230",
                 Address = new Address
@@ -86,7 +85,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                     Neighborhood = "Lomas Bonitas",
                     State = "San Luis Potosí",
                     Street = "Cañada de Lobos",
-                    ZipCode = "78000"
+                    ZipCode = "30230"
                 },
             };
             var request = await _facturama.Clients.CreateAsync(newClientRequest);
@@ -108,7 +107,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         public async Task UpdateClientExample()
         {
             Console.WriteLine("\nActualizando un cliente...");
-            var updateClientRequest = new FacturamaAPI.src.Facturama.Sdk.Core.Models.Request.ClientRequest
+            var updateClientRequest = new Facturama.Sdk.Core.Models.Request.ClientRequest
             {
                 Id = "J_uWmWVdg-DJLoR1noHAbQ2",
                 Rfc = "FUNK671228PH6",
@@ -152,5 +151,27 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                 Console.WriteLine($"No se encontró un cliente con RFC {rfc}");
             }
         }
+
+        public async Task DeleteClientExample()
+        {
+            Console.WriteLine("\nEliminando un cliente...");
+            var clientId = "J_uWmWVdg-DJLoR1noHAbQ2";
+            await _facturama.Clients.DeleteAsync(clientId);
+            Console.WriteLine($"Cliente con ID {clientId} eliminado.");
+        }
+        public async Task GetClientByIdExample()
+        {
+            Console.WriteLine("\nObteniendo un cliente por ID...");
+            var clientId = "0VKYoFmuf-cB-pzbm76rTA2";
+            var client = await _facturama.Clients.GetAsync(clientId);
+            if (client != null)
+            {
+                ConsoleHelper.Print(client);
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró un cliente con ID {clientId}");
+            }
+        }
     }
-}
+ }
