@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Core.Abstractions;
 using Microsoft.Extensions.Hosting;
 using Facturama.Sdk.Core.Exceptions;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +26,7 @@ var host = Host.CreateDefaultBuilder(args)
         //services.AddTransient<ClientExamples>();
         services.AddTransient<IExample, ClientsExamples>();
         services.AddTransient<IExample, ProductsExample>();
+        services.AddTransient<IExample, BranchOfficeExample>();
     })
     .ConfigureLogging(logging =>
     {

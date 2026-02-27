@@ -2,8 +2,8 @@
 using Facturama.Sdk.Core.Abstractions;
 using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Common;
-using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using System.Security.Cryptography.X509Certificates;
+
+
 
 namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 {

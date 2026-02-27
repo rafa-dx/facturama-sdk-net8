@@ -2,8 +2,8 @@
 using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Common;
 using Facturama.Sdk.Samples.ConsoleApp.Helpers;
-using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using Microsoft.VisualBasic;
+using Facturama.Sdk.Core.Abstractions;
+
 
 namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 {
