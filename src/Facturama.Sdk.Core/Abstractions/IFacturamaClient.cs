@@ -5,7 +5,12 @@
         IClientService Clients { get; }
         IProductService Products { get; }
         //ICfdiService Cfdis { get; }
-        //IBranchOfficeService BranchOffices { get; }
+        IBranchOfficeService BranchOffices { get; }
+
+        ISeriesService Series { get; }
+
+        ISuscriptionPlanService SuscriptionPlans { get; }
+
 
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace FacturamaAPI.src.Facturama.Sdk.Core.Abstractions
+﻿namespace Facturama.Sdk.Core.Abstractions
 {
     public interface IExample
     {

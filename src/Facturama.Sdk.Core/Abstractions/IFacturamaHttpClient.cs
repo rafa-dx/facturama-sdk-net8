@@ -21,5 +21,9 @@ namespace Facturama.Sdk.Core.Abstractions
         Task DeleteAsync(
             string endpoint,
             CancellationToken cancellationToken = default);
+
+        Task<TResponse> DeleteAndResponseAsync<TResponse>(
+            string endpoint,
+            CancellationToken cancellationToken = default);
     }
 }
