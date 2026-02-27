@@ -16,8 +16,7 @@ namespace Facturama.Sdk.Configuration
         /// User-Agent enviado en las peticiones.
         /// Default: "FacturamaSDK/1.0.0".
         /// </summary>
-        public string UserAgent { get; set; } = "FacturamaSDK/1.0.0";
-
+        public string UserAgent { get; set; } = SdkVersion.UserAgent;
         /// <summary>
         /// Habilita compresión de contenido (gzip, deflate).
         /// Default: true.
@@ -95,5 +94,6 @@ namespace Facturama.Sdk.Configuration
                     nameof(MaxAutomaticRedirections));
             }
         }
+
     }
 }

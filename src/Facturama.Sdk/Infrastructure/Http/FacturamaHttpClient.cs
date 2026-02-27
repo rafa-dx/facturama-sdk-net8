@@ -14,7 +14,7 @@ namespace Facturama.Sdk.Infrastructure.Http;
 /// <summary>
 /// Implementación del cliente HTTP para comunicarse con la API de Facturama.
 /// </summary>
-internal sealed class FacturamaHttpClient : IFacturamaHttpClient
+public sealed class FacturamaHttpClient : IFacturamaHttpClient
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<FacturamaHttpClient> _logger;
@@ -219,7 +219,52 @@ internal sealed class FacturamaHttpClient : IFacturamaHttpClient
         }
     }
 
+
     /// <inheritdoc/>
+    public async Task<TResponse> DeleteAndResponseAsync<TResponse>(
+        string endpoint,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+
+        var stopwatch = Stopwatch.StartNew();
+
+        try
+        {
+            _logger.LogDebug("DELETE request to {Endpoint}", endpoint);
+            var response = await _httpClient.DeleteAsync(endpoint, cancellationToken)
+                .ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                await ThrowFacturamaExceptionAsync(response, cancellationToken)
+                    .ConfigureAwait(false);
+            }
+
+            _logger.LogDebug(
+                "DELETE {Endpoint} completed in {ElapsedMs}ms with status {StatusCode}",
+                endpoint,
+                stopwatch.ElapsedMilliseconds,
+                response.StatusCode);
+            return response.IsSuccessStatusCode
+                ? await HandleResponseAsync<TResponse>(response, cancellationToken)
+                    .ConfigureAwait(false)
+                : default!;
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "Network error during DELETE to {Endpoint}", endpoint);
+            throw new FacturamaConnectionException(
+                "Failed to connect to Facturama API. Check your network connection.", ex);
+        }
+        catch (TaskCanceledException ex) when (!cancellationToken.IsCancellationRequested)
+        {
+            _logger.LogError(ex, "Timeout during DELETE to {Endpoint}", endpoint);
+            throw new FacturamaTimeoutException(
+                (int)_httpClient.Timeout.TotalSeconds, ex);
+        }
+    }
+
     public async Task<byte[]> GetBytesAsync(
         string endpoint,
         Dictionary<string, string>? queryParams = null,

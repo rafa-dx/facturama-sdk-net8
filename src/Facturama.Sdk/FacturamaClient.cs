@@ -18,6 +18,8 @@ public sealed class FacturamaClient : IFacturamaClient, IDisposable
     private readonly Lazy<IProductService> _products;
     private readonly Lazy<ICfdiService> _cfdis;
     private readonly Lazy<IBranchOfficeService> _branchOffices;
+    private readonly Lazy<ISeriesService> _serieService;
+    private readonly Lazy<ISuscriptionPlanService> _suscriptionPlanService;
 
     /// <summary>
     /// Inicializa una nueva instancia de <see cref="FacturamaClient"/> con Dependency Injection.
@@ -62,12 +64,23 @@ public sealed class FacturamaClient : IFacturamaClient, IDisposable
             new CfdiService(
                 httpClient,
                 loggerFactory.CreateLogger<CfdiService>()));
-
+      
+        */
         _branchOffices = new Lazy<IBranchOfficeService>(() =>
             new BranchOfficeService(
                 httpClient,
                 loggerFactory.CreateLogger<BranchOfficeService>()));
-        */
+
+        _serieService = new Lazy<ISeriesService>(() =>
+        new SerieService(
+            httpClient,
+            loggerFactory.CreateLogger<SerieService>()));
+
+        _suscriptionPlanService = new Lazy<ISuscriptionPlanService>(() =>
+            new SuscriptionPlanService(
+                httpClient,
+                loggerFactory.CreateLogger<SuscriptionPlanService>()));
+
         _logger.LogDebug("FacturamaClient inicializado correctamente");
     }
 
@@ -89,7 +102,15 @@ public sealed class FacturamaClient : IFacturamaClient, IDisposable
     /// <summary>
     /// Servicio para gestionar sucursales.
     /// </summary>
-    //public IBranchOfficeService BranchOffices => _branchOffices.Value;
+    public IBranchOfficeService BranchOffices => _branchOffices.Value;
+
+    /// <summary>
+    /// Servicio para la gestion de las series
+    /// </summary>
+    /// 
+    public ISeriesService Series => _serieService.Value;
+
+    public ISuscriptionPlanService SuscriptionPlans => _suscriptionPlanService.Value;
 
     /// <summary>
     /// Libera los recursos utilizados por el cliente.

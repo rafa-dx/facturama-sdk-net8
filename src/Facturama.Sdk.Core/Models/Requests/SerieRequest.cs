@@ -5,7 +5,8 @@ namespace Facturama.Sdk.Core.Models.Request
 {
     public sealed record SerieRequest
     {
-
+        [JsonPropertyName("IdBranchOffice")]
+        public string IdBranchOffice { get; init; }
         [JsonPropertyName("Name")]
         public string Name { get; init; }
 

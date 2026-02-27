@@ -7,6 +7,9 @@ namespace Facturama.Sdk.Core.Models.Responses
 {
     public sealed record BranchOfficeResponse
     {
+        [JsonPropertyName("Id")]
+        public string Id { get; init; }
+
         [JsonPropertyName("Name")]
         public string Name { get; init; }
 

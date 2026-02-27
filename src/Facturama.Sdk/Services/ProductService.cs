@@ -1,12 +1,12 @@
-﻿using FacturamaAPI.src.Facturama.Sdk.Core.Abstractions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Exceptions;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Common;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Request;
-using FacturamaAPI.src.Facturama.Sdk.Core.Models.Responses;
+﻿using Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Core.Exceptions;
+using Facturama.Sdk.Core.Models.Common;
+using Facturama.Sdk.Core.Models.Request;
+using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
 
 
-namespace FacturamaAPI.src.Facturama.Sdk.Services;
+namespace Facturama.Sdk.Services;
 
 internal sealed class ProductService : IProductService
 {
@@ -126,7 +126,7 @@ internal sealed class ProductService : IProductService
             try
             {
                 var response = await _httpClient.GetAsync<IReadOnlyList<ProductResponse>>(
-                    BaseEndpointPaginated,
+                    BaseEndpoint,
                     queryParams: null,
                     cancellation);
 

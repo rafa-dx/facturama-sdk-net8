@@ -147,7 +147,7 @@ public static class ServiceCollectionExtensions
 
 
                 // Headers personalizados
-                if (httpConfig.CustomHeaders != null) // ← NUEVO
+                if (httpConfig.CustomHeaders != null) 
                 {
                     foreach (var header in httpConfig.CustomHeaders)
                     {
@@ -156,7 +156,7 @@ public static class ServiceCollectionExtensions
                 }
 
             })
-            .ConfigurePrimaryHttpMessageHandler((serviceProvider) => // ← NUEVO
+            .ConfigurePrimaryHttpMessageHandler((serviceProvider) => 
             {
                 var options = serviceProvider
                     .GetRequiredService<IOptions<FacturamaOptions>>()
@@ -200,11 +200,11 @@ public static class ServiceCollectionExtensions
 
         return HttpPolicyExtensions
         .HandleTransientHttpError()
-        .OrResult(msg => retryConfig.RetryOnStatusCodes.Contains((int)msg.StatusCode)) // ← CAMBIADO
+        .OrResult(msg => retryConfig.RetryOnStatusCodes.Contains((int)msg.StatusCode)) 
         .WaitAndRetryAsync(
-            retryCount: retryConfig.MaxRetries, // ← CAMBIADO
+            retryCount: retryConfig.MaxRetries, 
             sleepDurationProvider: retryAttempt =>
-                retryConfig.CalculateDelay(retryAttempt), // ← CAMBIADO
+                retryConfig.CalculateDelay(retryAttempt), 
             onRetry: (outcome, timespan, retryCount, context) =>
             {
                 var logger = serviceProvider
@@ -215,7 +215,7 @@ public static class ServiceCollectionExtensions
                     outcome.Result?.StatusCode,
                     timespan.TotalMilliseconds,
                     retryCount,
-                    retryConfig.MaxRetries); // ← CAMBIADO
+                    retryConfig.MaxRetries); 
             });
     }
 
@@ -229,9 +229,9 @@ public static class ServiceCollectionExtensions
             .GetRequiredService<IOptions<FacturamaOptions>>()
             .Value;
 
-        var cbConfig = options.CircuitBreaker; // ← NUEVO
+        var cbConfig = options.CircuitBreaker;
 
-        if (!cbConfig.Enabled) // ← NUEVO
+        if (!cbConfig.Enabled) 
         {
             return Policy.NoOpAsync<HttpResponseMessage>();
         }
@@ -239,8 +239,8 @@ public static class ServiceCollectionExtensions
         return HttpPolicyExtensions
             .HandleTransientHttpError()
             .CircuitBreakerAsync(
-                handledEventsAllowedBeforeBreaking: cbConfig.FailuresBeforeBreaking, // ← CAMBIADO
-                durationOfBreak: cbConfig.DurationOfBreak, // ← CAMBIADO
+                handledEventsAllowedBeforeBreaking: cbConfig.FailuresBeforeBreaking, 
+                durationOfBreak: cbConfig.DurationOfBreak, 
                 onBreak: (outcome, duration) =>
                 {
                     var logger = serviceProvider
@@ -249,7 +249,7 @@ public static class ServiceCollectionExtensions
                     logger?.LogError(
                         "Circuit breaker opened for {Duration}s after {Failures} consecutive failures",
                         duration.TotalSeconds,
-                        cbConfig.FailuresBeforeBreaking); // ← CAMBIADO
+                        cbConfig.FailuresBeforeBreaking); 
                 },
                 onReset: () =>
                 {

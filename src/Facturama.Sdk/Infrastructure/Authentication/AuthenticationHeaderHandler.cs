@@ -10,7 +10,7 @@ namespace Facturama.Sdk.Infrastructure.Authentication;
 /// <summary>
 /// Handler HTTP que agrega automáticamente el header de autenticación Basic a cada petición.
 /// </summary>
-internal sealed class AuthenticationHeaderHandler : DelegatingHandler
+public sealed class AuthenticationHeaderHandler : DelegatingHandler
 {
     private readonly string _encodedCredentials;
     private readonly ILogger<AuthenticationHeaderHandler> _logger;
