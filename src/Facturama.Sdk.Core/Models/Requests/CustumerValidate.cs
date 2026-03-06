@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record CustumerValidateRequest
+    public sealed record CustumerValidate
     {
         /// <summary>
         /// Rfc, consultado

@@ -3,7 +3,7 @@
 
 namespace Facturama.Sdk.Core.Models.Responses
 {
-    public sealed record ProductResponse
+    public sealed record Product
     {
         [JsonPropertyName("Id")]
         public string Id { get; init; }

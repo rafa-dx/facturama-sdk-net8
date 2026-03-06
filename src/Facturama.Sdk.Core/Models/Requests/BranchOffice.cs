@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record BranchOfficeRequest
+    public sealed record BranchOffice
     {
         [JsonPropertyName("Id")]
         public string Id { get; init; }
