@@ -17,7 +17,7 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string Serie { get; init; }
 
         [JsonPropertyName("CfdiType")]
-        public CfdiType CfdiType { get; init; }
+        public string CfdiType { get; init; }
 
         [JsonPropertyName("PaymentForm")]
         public string PaymentForm { get; init; }

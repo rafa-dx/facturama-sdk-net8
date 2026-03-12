@@ -3,7 +3,7 @@
 
 namespace Facturama.Sdk.Core.Models.Responses
 {
-    public sealed record TaxStamp
+    public sealed record TaxStampResponse
     {
         [JsonPropertyName("Uuid")]
         public string Uuid { get; init; }

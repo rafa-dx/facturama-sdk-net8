@@ -1,6 +1,6 @@
 ﻿namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record Image
+    public sealed record ImageRequest
     {
 
         public string Img { get; init; }

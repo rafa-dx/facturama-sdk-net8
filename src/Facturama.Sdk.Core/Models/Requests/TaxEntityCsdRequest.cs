@@ -1,6 +1,6 @@
 ﻿namespace Facturama.Sdk.Core.Models.Requests
 {
-    public sealed record TaxEntityCsd
+    public sealed record TaxEntityCsdRequest
     {
         public string Rfc { get; init; }    
         public string Certificate {  get; init; }

@@ -2,7 +2,7 @@
 
 namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record TaxEntity
+    public sealed record TaxEntityRequest
     {  
         public string FiscalRegime { get; set; }        
         public string ComercialName { get; set; }        

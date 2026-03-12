@@ -19,7 +19,7 @@ namespace Facturama.Sdk.Core.Models.Complements
         public PaymentComplement? Payments { get; init; }
 
         [JsonPropertyName("TaxStamp")]
-        public TaxStamp TaxStamp { get; set; }
+        public TaxStampResponse TaxStamp { get; set; }
 
         [JsonPropertyName("Payroll")]
         public PayrollComplement Payroll { get; set; }

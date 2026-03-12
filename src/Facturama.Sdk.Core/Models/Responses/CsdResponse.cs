@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Facturama.Sdk.Core.Models.Responses
 {
-    public sealed record Csd
+    public sealed record CsdResponse
     {
         public string Rfc { get; init; }
         public string ExpirationDate { get; init; }

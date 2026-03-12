@@ -23,24 +23,13 @@ namespace Facturama.Sdk.Core.Models.Responses
 
         public IssuedIn IssuedIn { get; init; }
 
-        public Csd  Csd { get; init; }
+        public CsdResponse  Csd { get; init; }
 
-        public Csd Fiel { get; init; }
+        public CsdResponse Fiel { get; init; }
         public string UrlLogo { get; init; }    
 
 
     }
 
-    public record IssuedIn
-    {
-        public string Street { get; init; }
-        public string Neighborhood { get; init; }
 
-        public string ZipCode { get; init; }
-        public string Municipality { get; init; }
-        public string State { get; init; }
-        public string Country { get; init; }
-        public string Id { get; init; }
-
-    }
 }

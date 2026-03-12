@@ -49,11 +49,11 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         [JsonPropertyName("Taxes")]
         public List<Tax> Taxes { get; init; }
 
-        [JsonPropertyName("CuentaPredial")]
-        public string CuentaPredial { get; init; }
+        [JsonPropertyName("PropertyTaxIDNumber")]
+        public List<string> PropertyTaxIDNumber { get; init; }
 
         [JsonPropertyName("NumerosPedimento")]
-        public IEnumerable<string> NumerosPedimento { get; init; }
+        public List<string> NumerosPedimento { get; init; }
 
         [JsonPropertyName("Total")]
         public decimal Total { get; init; }

@@ -1,6 +1,6 @@
 ﻿namespace Facturama.Sdk.Core.Models.Responses
 {
-    public sealed record SuscriptionPlan
+    public sealed record SuscriptionPlanResponse
     {
         public string Plan { get; init; }
         public string CurrentFolios { get; init; }

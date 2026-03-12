@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
 
-namespace Facturama.Sdk.Core.Models.Request
+namespace Facturama.Sdk.Core.Models.Responses
 {
-    public sealed record ProductRequest
+    public sealed record ProductResponse
     {
         [JsonPropertyName("Id")]
         public string Id { get; init; }
@@ -17,14 +17,14 @@ namespace Facturama.Sdk.Core.Models.Request
         [JsonPropertyName("IdentificationNumber")]
         public string IdentificationNumber { get; init; }
 
+        [JsonPropertyName("Category")]
+        public string Category { get; init; }
+
         [JsonPropertyName("Name")]
         public string Name { get; init; }
 
         [JsonPropertyName("Description")]
         public string Description { get; init; }
-
-        [JsonPropertyName("Description")]
-        public string Category { get; init; }
 
         [JsonPropertyName("Price")]
         public decimal Price { get; init; }
@@ -34,6 +34,7 @@ namespace Facturama.Sdk.Core.Models.Request
 
         [JsonPropertyName("CuentaPredial")]
         public string CuentaPredial { get; init; }
+
 
         [JsonPropertyName("CuentasPredial")]
         public IReadOnlyCollection<string>? CuentasPredial { get; init; }
