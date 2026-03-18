@@ -4,12 +4,13 @@
     {
         IClientService Clients { get; }
         IProductService Products { get; }
-        //ICfdiService Cfdis { get; }
         IBranchOfficeService BranchOffices { get; }
-
         ISeriesService Series { get; }
-
         ISuscriptionPlanService SuscriptionPlans { get; }
+        ICatalogService Catalogs { get; }
+
+        ICfdiService Cfdis { get; }
+        ICfdiLiteService CfdiLite { get; }
 
 
     }

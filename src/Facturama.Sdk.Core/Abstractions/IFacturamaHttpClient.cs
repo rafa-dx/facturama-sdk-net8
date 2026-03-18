@@ -11,6 +11,7 @@ namespace Facturama.Sdk.Core.Abstractions
         Task<TResponse> PostAsync<TResponse>(
              string endpoint,
              object request,
+             Dictionary<string, string?>? queryParams = null,
              CancellationToken cancellationToken = default);
 
         Task<TResponse> PutAsync<TResponse>(
@@ -24,6 +25,7 @@ namespace Facturama.Sdk.Core.Abstractions
 
         Task<TResponse> DeleteAndResponseAsync<TResponse>(
             string endpoint,
+            Dictionary<string, string?>? queryParams = null,
             CancellationToken cancellationToken = default);
     }
 }

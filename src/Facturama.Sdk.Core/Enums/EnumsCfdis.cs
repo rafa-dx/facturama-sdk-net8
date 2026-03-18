@@ -28,7 +28,7 @@ namespace Facturama.Sdk.Core.Enums
 
     public enum InvoiceType
     {
-        Issued, Received, Payroll
+        Issued, Received, Payroll, IssuedLite
     }
 
     public enum InvoiceStatus
