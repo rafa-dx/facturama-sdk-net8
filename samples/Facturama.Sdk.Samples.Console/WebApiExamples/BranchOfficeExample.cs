@@ -78,7 +78,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Id = IdBranchOffice,
                 Name = "El sauce",
-                Description = "Sucursal del sauce, enfocada en la distribución de agua en garrafón",
+                Description = "Sucursal del sauce, enfocada en la distribución de agua en garrafón999",
                 Address = new Address
                 {
 
@@ -95,8 +95,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             };
             var response = await _facturama.BranchOffices.UpdateAsync( IdBranchOffice, branchOfficeToUpdate);
 
-         
-            Console.WriteLine($"Sucursal actualizada: [{response.Id}] {response.Name}");
+
         }
 
         public async Task DeleteBranchOfficeExample()

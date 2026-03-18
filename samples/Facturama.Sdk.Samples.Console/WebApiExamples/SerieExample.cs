@@ -21,9 +21,9 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             System.Console.WriteLine("\n--- CRUD series ---");
             try
             {
-                //await ListSeriesExample();
-                //await CreateSerieExample();
-                //await DeleteSerieExample();
+                await ListSeriesExample();
+                await CreateSerieExample();
+                await DeleteSerieExample();
             }
             catch (Exception ex)
             {
@@ -45,6 +45,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"  - [{serie.Name}] {serie.Folio} ({serie.Description})");
             }
+            Console.ReadLine();
         }
 
         public async Task CreateSerieExample()
@@ -59,6 +60,17 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                 Folio = 1
             });
             Console.WriteLine($"Serie creada: {serie.Name} - {serie.Description}");
+            Console.ReadLine();
+        }
+
+        public async Task DeleteSerieExample()
+        {
+            Console.WriteLine("Eliminando una serie...");
+            string Id = "GkJL10RzjP7G7-c4zxv9uw2";
+            string name = "A";
+            await _facturama.Series.DeleteSerieAsync(Id);
+            Console.WriteLine($"Serie eliminada: {name}");
+            Console.ReadLine();
         }
     }
 }

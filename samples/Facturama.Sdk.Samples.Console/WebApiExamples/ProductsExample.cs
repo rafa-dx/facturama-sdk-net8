@@ -2,7 +2,6 @@
 using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Common;
 using Facturama.Sdk.Samples.ConsoleApp.Helpers;
-using Facturama.Sdk.Core.Abstractions;
 
 
 namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
@@ -26,12 +25,12 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             try
             {
-                //await ListProductsExample();
-                //await CreateProductExample();
-                //await ListPagedProductsExample();
-                //await UpdateProductExample();
-                //await FindProductByIdExample();
-                //await DeleteProductExample();
+                await ListProductsExample();
+                await CreateProductExample();
+                await ListPagedProductsExample();
+                await UpdateProductExample();
+                await FindProductByIdExample();
+                await DeleteProductExample();
             }
             catch (FacturamaException ex)
             {
@@ -52,6 +51,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"  - [{product.Id}] {product.Name} ({product.CodeProdServ}) - {product.Description}");
             }
+            Console.ReadLine();
 
         }
 
@@ -87,6 +87,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             var request = await _facturama.Products.CreateAsync(newProduct);
             ConsoleHelper.Print(request);
+            Console.ReadLine();
         }
 
         public async Task ListPagedProductsExample()
@@ -98,6 +99,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             Console.WriteLine($"Total de productos: {productsPage.TotalRecords}");
 
             ConsoleHelper.Print(productsPage);
+            Console.ReadLine();
 
         }
 
@@ -108,7 +110,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var newProduct = new Core.Models.Request.ProductRequest
             {
                 Id = IdProduct,
-                Name = "Sitio Web CMS modificado",
+                Name = "Sitio Web CMS modificado3",
                 Description = "Producto de prueba solo IVA",
                 CodeProdServ = "43232408",
                 Unit = "Servicio",
@@ -131,6 +133,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             };
 
             var request = await _facturama.Products.UpdateAsync(IdProduct, newProduct);
+            Console.ReadLine();
         }
 
 
@@ -148,6 +151,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var IdProduct = "bwgjY-M5QA9QMUQntGDvnQ2";
             await _facturama.Products.DeleteAsync(IdProduct);
             Console.WriteLine($"Producto con ID {IdProduct} eliminado correctamente.");
+            Console.ReadLine();
 
         }
     }

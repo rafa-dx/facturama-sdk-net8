@@ -25,13 +25,13 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             try
             {
-                //await ListClientsExample();
-                //await CreateClientExample();
-                //await ListPagedClientsExample();
-                //await UpdateClientExample();
-                //await FindClientByRfcExample();
-                //await GetClientByIdExample();
-                //await DeleteClientExample();
+                await ListClientsExample();
+                await CreateClientExample();
+                await ListPagedClientsExample();
+                await UpdateClientExample();
+                await FindClientByRfcExample();
+                await GetClientByIdExample();
+                await DeleteClientExample();
 
 
             }
@@ -57,6 +57,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 System.Console.WriteLine($"  - [{client.Id}] {client.Name} ({client.Rfc}) - {client.Email}");
             }
+            Console.ReadLine();
 
         }
 
@@ -91,6 +92,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var request = await _facturama.Clients.CreateAsync(newClientRequest);
 
             ConsoleHelper.Print(request);
+            Console.ReadLine();
 
 
         }
@@ -135,6 +137,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var request = await _facturama.Clients.UpdateAsync(updateClientRequest.Id, updateClientRequest);
 
             ConsoleHelper.Print(request);
+            Console.ReadLine();
         }
 
         public async Task FindClientByRfcExample()
@@ -158,6 +161,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var clientId = "J_uWmWVdg-DJLoR1noHAbQ2";
             await _facturama.Clients.DeleteAsync(clientId);
             Console.WriteLine($"Cliente con ID {clientId} eliminado.");
+            Console.ReadLine();
         }
         public async Task GetClientByIdExample()
         {
@@ -172,6 +176,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"No se encontró un cliente con ID {clientId}");
             }
+            Console.ReadLine();
         }
     }
  }

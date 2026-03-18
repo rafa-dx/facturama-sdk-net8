@@ -1,44 +1,70 @@
-﻿
+﻿ 
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Facturama.Sdk.Core.Abstractions;
 using Microsoft.Extensions.Hosting;
-using Facturama.Sdk.Core.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Facturama.Sdk.DependencyInjection;
 using Facturama.Sdk.Samples.ConsoleApp.WebApiExamples;
+using Serilog;
+using Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples;
 
-// Configurar Host con Dependency Injection
-var host = Host.CreateDefaultBuilder(args)
-    .ConfigureAppConfiguration((context, config) =>
-    {
-        config.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true);
-    })
-    .ConfigureServices((context, services) =>
-    {
-        // Registrar el SDK de Facturama
-        services.AddFacturama(context.Configuration);
+//Configurar Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(new ConfigurationBuilder()
+        .AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true)
+        .Build())
+    .CreateLogger();
 
-        // Registrar la aplicación principal
-        services.AddTransient<Application>();
-        //WebAPIExamples
-        //services.AddTransient<ClientExamples>();
-        services.AddTransient<IExample, ClientsExamples>();
-        services.AddTransient<IExample, ProductsExample>();
-        services.AddTransient<IExample, BranchOfficeExample>();
-    })
-    .ConfigureLogging(logging =>
-    {
-        logging.ClearProviders();
-        logging.AddConsole();
-        logging.SetMinimumLevel(LogLevel.Debug);
-    })
-    .Build();
+try {
+    Log.Information("==============================================");
+    Log.Information("  SDK de Facturama - Aplicación de Prueba");
+    Log.Information("==============================================");
 
-// Ejecutar la aplicación
-var app = host.Services.GetRequiredService<Application>();
-await app.RunAsync();
+    // Configurar Host con Dependency Injection
+    var host = Host.CreateDefaultBuilder(args)
+        .ConfigureAppConfiguration((context, config) =>
+        {
+            config.AddJsonFile("appsettings.Local.json", optional: false, reloadOnChange: true);
+        })
+        .ConfigureServices((context, services) =>
+        {
+            // Registrar el SDK de Facturama
+            services.AddFacturama(context.Configuration);
+
+            // Registrar la aplicación principal
+            services.AddTransient<Application>();
+            //WebAPIExamples
+            //services.AddTransient<ClientExamples>();
+            services.AddTransient<IExample, ClientsExamples>();
+            services.AddTransient<IExample, ProductsExample>();
+            services.AddTransient<IExample, BranchOfficeExample>();
+            services.AddTransient<IExample, SerieExample>();
+            services.AddTransient<IExample, SuscriptionPlanExample>();
+            services.AddTransient<IExample, CatalogExample>();
+            services.AddTransient<IExample, CfdiExample>();
+            services.AddTransient<IExample, CfdiLIsteExample>();
+        })
+        .UseSerilog()
+        .Build();
+
+    // Ejecutar la aplicación
+    var app = host.Services.GetRequiredService<Application>();
+    await app.RunAsync();
+
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Aplicación terminó inesperadamente");
+    return 1;
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
+return 0;
 
 // Clase principal de la aplicación
 public class Application
@@ -70,16 +96,19 @@ public class Application
 
                 if (option == "0")
                 {
+                    _logger.LogInformation("Usuario salió de la aplicación");
                     Console.WriteLine("¡Hasta pronto!");
                     return;
                 }
 
                 if (_examples.TryGetValue(option, out var example))
                 {
+                    _logger.LogInformation("Ejecutando ejemplo: {ExampleName}", example.Name);
                     await example.ExecuteAsync();
                 }
                 else
                 {
+                    _logger.LogWarning("Opción no válida seleccionada: {Option}", option);
                     Console.WriteLine("Opción no válida. Intenta de nuevo.");
                 }
 
