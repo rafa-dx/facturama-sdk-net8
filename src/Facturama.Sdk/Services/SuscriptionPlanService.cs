@@ -1,22 +1,19 @@
 ﻿using Facturama.Sdk.Core.Abstractions;
+using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Facturama.Sdk.Services
 {
-    internal class SuscriptionPlanService : ISuscriptionPlanService
+    public sealed class SuscriptionPlanService : ISuscriptionPlanService
     {
         private string BaseEndpoint => "/api/SuscriptionPlan";
 
-        private readonly IFacturamaHttpClient _httpClient;
+        private readonly IApiWebHttpClient _httpClient;
         private readonly ILogger<SuscriptionPlanService> _logger;
 
-        public SuscriptionPlanService(IFacturamaHttpClient httpClient, ILogger<SuscriptionPlanService> logger)
+        public SuscriptionPlanService(IApiWebHttpClient httpClient, ILogger<SuscriptionPlanService> logger)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -36,6 +33,12 @@ namespace Facturama.Sdk.Services
                 _logger.LogInformation("Subscription plan information retrieved successfully.");
                 return response;
 
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "API error occurred while getting subscription plan information. Status Code: {StatusCode}, Error Message: {ErrorMessage}",
+                    ex.StatusCode, ex.Message);
+                throw;
             }
             catch (Exception ex)
             {

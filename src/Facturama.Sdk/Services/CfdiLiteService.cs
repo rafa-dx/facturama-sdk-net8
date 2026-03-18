@@ -1,42 +1,41 @@
-﻿using Facturama.Sdk;
-using Facturama.Sdk.Core.Abstractions;
+﻿using Facturama.Sdk.Core.Abstractions;
 using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Filters;
 using Facturama.Sdk.Core.Models.Request;
+using Facturama.Sdk.Core.Models.Requests;
 using Facturama.Sdk.Core.Models.Responses;
 using Facturama.Sdk.Core.Utilities;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Services
+namespace Facturama.Sdk.Services
 {
-    public sealed class CfdiService : ICfdiService
+    public sealed class CfdiLiteService : ICfdiLiteService
     {
         private int DefaultAPIVersion = 3;
         private const string BaseEndpoint = "cfdis";
 
+        // private readonly IFacturamaHttpClient _httpClient;
+        private readonly IApiLiteHttpClient _httpClient;
+        private readonly ILogger<CfdiLiteService> _logger;
 
-        //private readonly IFacturamaHttpClient _httpClient;
-        private readonly IApiWebHttpClient _httpClient;
-        private readonly ILogger<CfdiService> _logger;
-
-        /// <summary>
-        /// Inicializa una nueva instancia de <see cref="CfdiService"/>.
-        /// </summary>
-        /// <param name="httpClient">Cliente HTTP de Facturama.</param>
-        /// <param name="logger">Logger para diagnósticos.</param>
-        public CfdiService(
-            IApiWebHttpClient httpClient,
-            ILogger<CfdiService> logger)
+        public CfdiLiteService(
+            IApiLiteHttpClient httpClient,
+            ILogger<CfdiLiteService> logger)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-
         #region CREATE - Creación de CFDIs
         public async Task<CfdiResponse> CreateAsync(
-            CfdiRequest request,
-
+            CfdiLiteRequest request,
+            int? version = null,
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(request, nameof(request));
@@ -44,12 +43,13 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             _logger.LogInformation(
             "Creating CFDI 4.0 for receiver: {ReceiverRfc}",
             request.Receiver?.Rfc ?? "N/A");
+            var apiVersion = version ?? DefaultAPIVersion;
             try
             {
 
-                var endpoint = $"{DefaultAPIVersion}/{BaseEndpoint}";
+                var endpoint = $"{apiVersion}/{BaseEndpoint}";
 
-                _logger.LogInformation("Creating CFDI with API version {ApiVersion}", DefaultAPIVersion);
+                _logger.LogInformation("Creating CFDI with API version {ApiVersion}", apiVersion);
 
                 var response = await _httpClient.PostAsync<CfdiResponse>(
                 endpoint,
@@ -58,7 +58,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 cancellationToken);
                 _logger.LogInformation(
                     "CFDI created successfully. Version: {ApiVersion}",
-                    DefaultAPIVersion);
+                    apiVersion);
 
                 return response;
             }
@@ -125,7 +125,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                     : null;
 
                 var response = await _httpClient.GetAsync<List<ListCfdiResponse>>(
-                    "cfdi",
+                    "/cfdi",
                     queryParams,
                     cancellationToken);
 
@@ -142,7 +142,6 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
         #endregion
 
         #region Operaciones especiales de CFDI
-
         /// <inheritdoc/>
         public async Task<CfdiStatusResponse> GetStatusAsync(
             CfdiStatusParams filter,
@@ -199,7 +198,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             try
             {
 
-                var endpoint = $"cfdi/{fileType}/{cfdiType}/{cfdiId}";
+                var endpoint = $"/cfdi/{fileType}/{cfdiType}/{cfdiId}";
                 var response = await _httpClient.GetAsync<CfdiDownloadResponse>(
                     endpoint,
                     null,
@@ -232,7 +231,6 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 throw;
             }
         }
-
         #endregion
 
         #region Cancelación de CFDI
@@ -265,7 +263,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 };
 
                 var response = await _httpClient.DeleteAndResponseAsync<CfdiCancellationResponse>(
-                    $"cfdi/{cfdiId}",
+                    $"/cfdi/{cfdiId}",
                     queryParams,
                     cancellationToken);
 
@@ -284,22 +282,26 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
         #endregion
 
         #region Envío de CFDI por correo electrónico
-
         /// <inheritdoc/>
         public async Task<CfdiSendResponse> SendByEmailAsync(
             string cfdiId,
             string email,
-            string cfdiType = "issued",
+            string issuerEmail,
+            string? subject = null,
+            string? comments = null,
+            string cfdiType = "issuedLite",
             CancellationToken cancellationToken = default)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
             ArgumentException.ThrowIfNullOrWhiteSpace(email);
+            ArgumentException.ThrowIfNullOrWhiteSpace(issuerEmail);
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiType);
 
             _logger.LogInformation(
-                "Sending CFDI {CfdiId} to {Email}",
+                "Sending CFDI {CfdiId} to {Email} (Multiemisor from {IssuerEmail})",
                 cfdiId,
-                email);
+                email,
+                issuerEmail);
 
             try
             {
@@ -307,20 +309,29 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 {
                     ["cfdiType"] = cfdiType,
                     ["cfdiId"] = cfdiId,
-                    ["email"] = email
+                    ["email"] = email,
+                    ["issuerEmail"] = issuerEmail
                 };
 
+                if (!string.IsNullOrWhiteSpace(subject))
+                    queryParams["subject"] = subject;
+
+                if (!string.IsNullOrWhiteSpace(comments))
+                    queryParams["comments"] = comments;
+
+                var endpoint = "/Cfdi";
 
                 var response = await _httpClient.PostAsync<CfdiSendResponse>(
-                    "Cfdi",
+                    endpoint,
                     new { }, // Body vacío
                     queryParams,
                     cancellationToken);
 
                 _logger.LogInformation(
-                    "CFDI {CfdiId} sent successfully to {Email}",
+                    "CFDI {CfdiId} sent successfully to {Email} from {IssuerEmail}",
                     cfdiId,
-                    email);
+                    email,
+                    issuerEmail);
 
                 return response;
             }
@@ -328,16 +339,144 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             {
                 _logger.LogError(
                     ex,
-                    "Error sending CFDI {CfdiId} to {Email}",
-                    cfdiId,
-                    email);
+                    "Error sending CFDI {CfdiId} (Multiemisor)",
+                    cfdiId);
                 throw;
             }
         }
         #endregion
 
+        public async Task<CsdResponse> UploadCsdAsync(
+            CsdRequest csd,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(csd);
 
+            _logger.LogInformation(
+                "Uploading CSD for RFC: {Rfc}",
+                csd.Rfc);
 
-    }
+            try
+            {
+                var response = await _httpClient.PostAsync<CsdResponse>(
+                    "csds",
+                    csd,
+                    null,
+                    cancellationToken);
 
+                _logger.LogInformation(
+                    "CSD uploaded successfully for RFC: {Rfc}",
+                    csd.Rfc);
+
+                return response;
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "Error uploading CSD for RFC {Rfc}: {Message}", csd.Rfc, ex.Message);
+                throw;
+            }
+
+        }
+
+        public async Task<CsdResponse> GetCsdAsync(
+            string rfc,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(rfc);
+            _logger.LogInformation(
+                "Retrieving CSD for RFC: {Rfc}",
+                rfc);
+            try
+            {
+                var response = await _httpClient.GetAsync<CsdResponse>(
+                    $"csds/{rfc}",
+                    null,
+                    cancellationToken);
+                _logger.LogInformation(
+                    "CSD retrieved successfully for RFC: {Rfc}",
+                    rfc);
+                return response;
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "Error retrieving CSD for RFC {Rfc}: {Message}", rfc, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<CsdResponse> DeleteCsdAsync(
+            string rfc,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(rfc);
+            _logger.LogInformation(
+                "Deleting CSD for RFC: {Rfc}",
+                rfc);
+            try
+            {
+                var response = await _httpClient.DeleteAndResponseAsync<CsdResponse>(
+                    $"csds/{rfc}",
+                    null,
+                    cancellationToken);
+                _logger.LogInformation(
+                    "CSD deleted successfully for RFC: {Rfc}",
+                    rfc);
+                return response;
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "Error deleting CSD for RFC {Rfc}: {Message}", rfc, ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<IReadOnlyList<CsdResponse>> ListCsdAsync(
+            CancellationToken cancellationToken = default)
+        {
+            _logger.LogInformation("Listing all CSDs");
+            try
+            {
+                var response = await _httpClient.GetAsync<List<CsdResponse>>(
+                    "csds",
+                    null,
+                    cancellationToken);
+                _logger.LogInformation("Retrieved {Count} CSDs", response.Count);
+                return response.AsReadOnly();
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "Error listing CSDs: {Message}", ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<CsdResponse> UpdateCsdAsync(
+            string rfc,
+            CsdRequest csd,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(rfc);
+            ArgumentNullException.ThrowIfNull(csd);
+            _logger.LogInformation(
+                "Updating CSD for RFC: {Rfc}",
+                rfc);
+            try
+            {
+                var response = await _httpClient.PutAsync<CsdResponse>(
+                    $"csds/{rfc}",
+                    csd,
+                    cancellationToken);
+                _logger.LogInformation(
+                    "CSD updated successfully for RFC: {Rfc}",
+                    rfc);
+                return response;
+            }
+            catch (FacturamaException ex)
+            {
+                _logger.LogError(ex, "Error updating CSD for RFC {Rfc}: {Message}", rfc, ex.Message);
+                throw;
+            }
+        }
+
+        }
 }

@@ -6,11 +6,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Facturama.Sdk.Services;
 
-internal sealed class BranchOfficeService : IBranchOfficeService
+public sealed class BranchOfficeService : IBranchOfficeService
 {
     private const string BaseEndpoint = "/api/BranchOffice";
 
-    private readonly IFacturamaHttpClient _httpClient;
+    private readonly IApiWebHttpClient _httpClient;
     private readonly ILogger<BranchOfficeService> _logger;
 
     /// <summary>
@@ -20,7 +20,7 @@ internal sealed class BranchOfficeService : IBranchOfficeService
     /// <param name="logger">Logger para registrar información y errores.</param>
 
     public BranchOfficeService(
-            IFacturamaHttpClient httpClient,
+            IApiWebHttpClient httpClient,
             ILogger<BranchOfficeService> logger)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -42,6 +42,7 @@ internal sealed class BranchOfficeService : IBranchOfficeService
             var response = await _httpClient.PostAsync<BranchOfficeResponse>(
                 BaseEndpoint,
                 request,
+                null,
                 cancellationToken);
             _logger.LogInformation(
                 "Successfully created branch office with name: {BranchOfficeName}",

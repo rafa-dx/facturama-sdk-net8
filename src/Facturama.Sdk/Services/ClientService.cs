@@ -11,13 +11,13 @@ namespace Facturama.Sdk.Services;
 /// <summary>
 /// Implementación del servicio de gestión de clientes de Facturama.
 /// </summary>
-internal sealed class ClientService : IClientService
+public sealed class ClientService : IClientService
 {
     private const string BaseEndpoint = "/api/client";
     private const string BaseEndpointPaginated = "/api/Clients?";
     private const int MaxPageLength = 100;
 
-    private readonly IFacturamaHttpClient _httpClient;
+    private readonly IApiWebHttpClient _httpClient;
     private readonly ILogger<ClientService> _logger;
 
     /// <summary>
@@ -26,7 +26,7 @@ internal sealed class ClientService : IClientService
     /// <param name="httpClient">Cliente HTTP de Facturama.</param>
     /// <param name="logger">Logger para diagnósticos.</param>
     public ClientService(
-        IFacturamaHttpClient httpClient,
+        IApiWebHttpClient httpClient,
         ILogger<ClientService> logger)
     {
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -50,6 +50,7 @@ internal sealed class ClientService : IClientService
             var response = await _httpClient.PostAsync<ClientResponse>(
                 BaseEndpoint,
                 request,
+                null,
                 cancellationToken);
 
             _logger.LogInformation(

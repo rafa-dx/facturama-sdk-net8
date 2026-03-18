@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Facturama.Sdk.Services;
 
-internal sealed class ProductService : IProductService
+public sealed class ProductService : IProductService
 {
     private const string BaseEndpoint = "/api/Product";
     private const string BaseEndpointPaginated = "/api/Products";
     private const int MaxPageLength = 100;
 
 
-    private readonly IFacturamaHttpClient _httpClient;
+    private readonly IApiWebHttpClient _httpClient;
     private readonly ILogger<ProductService> _logger;
 
     /// <summary
@@ -25,7 +25,7 @@ internal sealed class ProductService : IProductService
     /// <param name="logger">Logger para registrar información y errores.</param>
 
     public ProductService(
-            IFacturamaHttpClient httpClient,
+            IApiWebHttpClient httpClient,
             ILogger<ProductService> logger)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -49,6 +49,7 @@ internal sealed class ProductService : IProductService
                 var response = await _httpClient.PostAsync<ProductResponse>(
                     BaseEndpoint,
                     request,
+                    null,
                     cancellationToken);
 
                 _logger.LogInformation(
