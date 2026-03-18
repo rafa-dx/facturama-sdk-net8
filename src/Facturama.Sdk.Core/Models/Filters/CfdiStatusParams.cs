@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Facturama.Sdk.Core.Models.Filters
 {
-    public sealed record CfdiStatusFilter
+    public sealed record CfdiStatusParams
     {
         [QueryName("uuid")]
         public string Uuid { get; init; }

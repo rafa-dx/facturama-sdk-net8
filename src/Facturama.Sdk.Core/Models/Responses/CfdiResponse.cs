@@ -35,6 +35,10 @@ namespace Facturama.Sdk.Core.Models.Responses
         public string Status { get; init; }
         public string OriginalString { get; init; }
 
+        public string XmlBase64 { get; init; }
+
+        public TaxStamp TaxStamp { get; init; }
+
 
 
     }

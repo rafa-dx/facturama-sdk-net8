@@ -32,7 +32,8 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string ExpeditionPlace { get; init; }
 
         [JsonPropertyName("Date")]
-        public DateTime? Date { get; init; }
+        //public DateTime? Date { get; init; }
+        public string Date { get; init; }
 
         [JsonPropertyName("PaymentConditions")]
         public string PaymentConditions { get; init; }

@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Facturama.Sdk.Core.Models.Requests
+{
+    public sealed record CsdRequest
+    {
+            public string Rfc { get; init; }
+            public string Certificate { get; init; }
+            public string PrivateKey { get; init; }
+            public string PrivateKeyPassword { get; init; }
+        
+    }
+}
