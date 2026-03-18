@@ -72,6 +72,7 @@ namespace Facturama.Sdk.Configuration
         /// </summary>
         public CircuitBreakerConfiguration CircuitBreaker { get; set; } = new();
 
+
         /// <summary>
         /// Valida que la configuración sea válida.
         /// </summary>

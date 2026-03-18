@@ -14,7 +14,7 @@ namespace Facturama.Sdk.Infrastructure.Http;
 /// <summary>
 /// Implementación del cliente HTTP para comunicarse con la API de Facturama.
 /// </summary>
-public sealed class FacturamaHttpClient : IFacturamaHttpClient
+public abstract class FacturamaHttpClient : IFacturamaHttpClient
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<FacturamaHttpClient> _logger;
@@ -89,21 +89,23 @@ public sealed class FacturamaHttpClient : IFacturamaHttpClient
     public async Task<TResponse> PostAsync<TResponse>(
         string endpoint,
         object request,
+        Dictionary<string, string?>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
         ArgumentNullException.ThrowIfNull(request);
 
+        var url = BuildUrl(endpoint, queryParams);
         var stopwatch = Stopwatch.StartNew();
 
         try
         {
-            _logger.LogDebug("POST request to {Endpoint}", endpoint);
+            _logger.LogDebug("POST request to {Endpoint}", url);
 
             var json = JsonSerializer.Serialize(request, _jsonOptions);
             using var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync(endpoint, content, cancellationToken)
+            var response = await _httpClient.PostAsync(url, content, cancellationToken)
                 .ConfigureAwait(false);
 
             var result = await HandleResponseAsync<TResponse>(response, cancellationToken)
@@ -111,7 +113,7 @@ public sealed class FacturamaHttpClient : IFacturamaHttpClient
 
             _logger.LogDebug(
                 "POST {Endpoint} completed in {ElapsedMs}ms with status {StatusCode}",
-                endpoint,
+                url,
                 stopwatch.ElapsedMilliseconds,
                 response.StatusCode);
 
@@ -223,16 +225,19 @@ public sealed class FacturamaHttpClient : IFacturamaHttpClient
     /// <inheritdoc/>
     public async Task<TResponse> DeleteAndResponseAsync<TResponse>(
         string endpoint,
+        Dictionary<string, string?>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
 
+        var url = BuildUrl(endpoint, queryParams);
         var stopwatch = Stopwatch.StartNew();
 
         try
         {
             _logger.LogDebug("DELETE request to {Endpoint}", endpoint);
-            var response = await _httpClient.DeleteAsync(endpoint, cancellationToken)
+
+            var response = await _httpClient.DeleteAsync(url, cancellationToken)
                 .ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
@@ -360,8 +365,8 @@ public sealed class FacturamaHttpClient : IFacturamaHttpClient
             if (string.IsNullOrWhiteSpace(json))
             {
                 _logger.LogWarning("Response content is empty for successful request");
-                throw new FacturamaException(
-                    "The server returned a successful status but the response content is empty.");
+                return default!;
+
             }
 
             try
