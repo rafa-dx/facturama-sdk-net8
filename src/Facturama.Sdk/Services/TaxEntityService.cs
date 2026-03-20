@@ -14,7 +14,7 @@ namespace Facturama.Sdk.Services
 {
     internal class TaxEntityService : ITaxEntityService
     {
-        private string BaseEndpoint => "/api/TaxEntity";
+        private string BaseEndpoint => "TaxEntity";
 
         private readonly IApiWebHttpClient _httpClient;
         private readonly ILogger<TaxEntityService> _logger;
@@ -37,22 +37,13 @@ namespace Facturama.Sdk.Services
             ArgumentNullException.ThrowIfNull(request);
             _logger.LogInformation("Starting update of tax entity CSD for RFC: {Rfc}", request.Rfc);
 
-            try
-            {
-                var response = await _httpClient.PutAsync<TaxEntityCsdResponse>(
-                BaseEndpoint,
-                request,
-                cancellationToken);
-                return response;
 
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error updating tax entity CSD for RFC: {Rfc}. Status Code: {StatusCode}, Response: {Response}",
-                     request.Rfc, ex.StatusCode);
-                throw;
+            var response = await _httpClient.PutAsync<TaxEntityCsdResponse>(
+            BaseEndpoint,
+            request,
+            cancellationToken);
+            return response;
 
-            }
         }
 
         public async Task<TaxEntityCsdResponse> PutCsdFielAsync(
@@ -61,40 +52,26 @@ namespace Facturama.Sdk.Services
         {
             ArgumentNullException.ThrowIfNull(request);
             _logger.LogInformation("Starting update of tax entity CSD FIEL for RFC: {Rfc}", request.Rfc);
-            try
-            {
-                var response = await _httpClient.PutAsync<TaxEntityCsdResponse>(
-                $"{BaseEndpoint}/UploadFiel",
-                request,
-                cancellationToken);
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error updating tax entity CSD FIEL for RFC: {Rfc}. Status Code: {StatusCode}, Response: {Response}",
-                     request.Rfc, ex.StatusCode);
-                throw;
-            }
+
+            var response = await _httpClient.PutAsync<TaxEntityCsdResponse>(
+            $"{BaseEndpoint}/UploadFiel",
+            request,
+            cancellationToken);
+            return response;
+
         }
 
         public async Task<TaxEntityResponse> GetTaxEntityAsync(
             CancellationToken cancellationToken = default)
         {
             _logger.LogInformation("Retrieving tax entity information");
-            try
-            {
-                var response = await _httpClient.GetAsync<TaxEntityResponse>(
-                    BaseEndpoint,
-                    null,
-                    cancellationToken);
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error retrieving tax entity information. Status Code: {StatusCode}, Response: {Response}",
-                    ex.StatusCode);
-                throw;
-            }
+
+            var response = await _httpClient.GetAsync<TaxEntityResponse>(
+                BaseEndpoint,
+                null,
+                cancellationToken);
+            return response;
+
         }
 
         public async Task<TaxEntityResponse> PutTaxEntityAsync(
@@ -103,20 +80,13 @@ namespace Facturama.Sdk.Services
         {
             ArgumentNullException.ThrowIfNull(request);
             _logger.LogInformation("Starting update of tax entity information for RFC: {Rfc}", request.Rfc);
-            try
-            {
-                var response = await _httpClient.PutAsync<TaxEntityResponse>(
-                BaseEndpoint,
-                request,
-                cancellationToken);
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error updating tax entity information for RFC: {Rfc}. Status Code: {StatusCode}, Response: {Response}",
-                     request.Rfc, ex.StatusCode);
-                throw;
-            }
+
+            var response = await _httpClient.PutAsync<TaxEntityResponse>(
+            BaseEndpoint,
+            request,
+            cancellationToken);
+            return response;
+
         }
 
 
@@ -126,23 +96,15 @@ namespace Facturama.Sdk.Services
         {
             ArgumentNullException.ThrowIfNull(request);
 
-        _logger.LogInformation("Starting update of tax entity logo for RFC: {Rfc}", request.Image);
-            try
-            {
-                var response = await _httpClient.PutAsync<TaxEntityLogoResponse>(
-                $"{BaseEndpoint}/UploadLogo",
-                request,
-                cancellationToken);
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error updating tax entity logo for RFC: {Rfc}. Status Code: {StatusCode}, Response: {Response}",
-                     request.Image, ex.StatusCode);
-                throw;
-            }
-        }
+            _logger.LogInformation("Starting update of tax entity logo for RFC: {Rfc}", request.Image);
 
+            var response = await _httpClient.PutAsync<TaxEntityLogoResponse>(
+            $"{BaseEndpoint}/UploadLogo",
+            request,
+            cancellationToken);
+            return response;
+
+        }
 
     }
 

@@ -44,29 +44,23 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             _logger.LogInformation(
             "Creating CFDI 4.0 for receiver: {ReceiverRfc}",
             request.Receiver?.Rfc ?? "N/A");
-            try
-            {
 
-                var endpoint = $"{DefaultAPIVersion}/{BaseEndpoint}";
 
-                _logger.LogInformation("Creating CFDI with API version {ApiVersion}", DefaultAPIVersion);
+            var endpoint = $"{DefaultAPIVersion}/{BaseEndpoint}";
 
-                var response = await _httpClient.PostAsync<CfdiResponse>(
-                endpoint,
-                request,
-                null,
-                cancellationToken);
-                _logger.LogInformation(
-                    "CFDI created successfully. Version: {ApiVersion}",
-                    DefaultAPIVersion);
+            _logger.LogInformation("Creating CFDI with API version {ApiVersion}", DefaultAPIVersion);
 
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error creating CFDI: {Message}", ex.Message);
-                throw;
-            }
+            var response = await _httpClient.PostAsync<CfdiResponse>(
+            endpoint,
+            request,
+            null,
+            cancellationToken);
+            _logger.LogInformation(
+                "CFDI created successfully. Version: {ApiVersion}",
+                DefaultAPIVersion);
+
+            return response;
+
 
         }
         #endregion
@@ -81,31 +75,25 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
 
             _logger.LogDebug("Retrieving CFDI with ID: {CfdiId}", cfdiId);
 
-            try
-            {
-                var queryParams =
-                    new Dictionary<string, string?>
-                    {
-                        ["type"] = "issued"
-                    };
-                var endpoint = $"cfdi/{cfdiId}";
 
-                var response = await _httpClient.GetAsync<CfdiResponse>(
-                    endpoint,
-                    queryParams,
-                    cancellationToken);
+            var queryParams =
+                new Dictionary<string, string?>
+                {
+                    ["type"] = "issued"
+                };
+            var endpoint = $"cfdi/{cfdiId}";
 
-                _logger.LogDebug(
-                    "CFDI retrieved successfully: {CfdiId}",
-                    cfdiId);
+            var response = await _httpClient.GetAsync<CfdiResponse>(
+                endpoint,
+                queryParams,
+                cancellationToken);
 
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error retrieving CFDI with ID {CfdiId}: {Message}", cfdiId, ex.Message);
-                throw;
-            }
+            _logger.LogDebug(
+                "CFDI retrieved successfully: {CfdiId}",
+                cfdiId);
+
+            return response;
+
         }
         #endregion
 
@@ -118,30 +106,24 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             _logger.LogDebug(
                 "Listing CFDIs with filter: {HasFilter}",
                 filter != null);
-            try
-            {
-                var queryParams = filter != null
-                    ? QueryBuilder.FromObject(filter)
-                    : null;
 
-                var response = await _httpClient.GetAsync<List<ListCfdiResponse>>(
-                    "cfdi",
-                    queryParams,
-                    cancellationToken);
+            var queryParams = filter != null
+                ? QueryBuilder.FromObject(filter)
+                : null;
 
-                _logger.LogDebug("Retrieved {Count} CFDIs", response.Count);
+            var response = await _httpClient.GetAsync<List<ListCfdiResponse>>(
+                "cfdi",
+                queryParams,
+                cancellationToken);
 
-                return response.AsReadOnly();
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error listing CFDIs: {Message}", ex.Message);
-                throw;
-            }
+            _logger.LogDebug("Retrieved {Count} CFDIs", response.Count);
+
+            return response.AsReadOnly();
+
         }
         #endregion
 
-        #region Operaciones especiales de CFDI
+        #region Estado CFDI SAT
 
         /// <inheritdoc/>
         public async Task<CfdiStatusResponse> GetStatusAsync(
@@ -154,27 +136,21 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 "Retrieving CFDI status for UUID: {Uuid}",
                 filter.Uuid);
 
-            try
-            {
-                var queryParams = QueryBuilder.FromObject(filter);
 
-                var response = await _httpClient.GetAsync<CfdiStatusResponse>(
-                    "cfdi/status",
-                    queryParams,
-                    cancellationToken);
+            var queryParams = QueryBuilder.FromObject(filter);
 
-                _logger.LogDebug(
-                   "Status retrieved for UUID: {Uuid} - Status: {Status}",
-                   filter.Uuid,
-                   response.Status);
+            var response = await _httpClient.GetAsync<CfdiStatusResponse>(
+                "cfdi/status",
+                queryParams,
+                cancellationToken);
 
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error retrieving CFDI SAT status with ID {uuid}: {Message}", filter.Uuid, ex.Message);
-                throw;
-            }
+            _logger.LogDebug(
+               "Status retrieved for UUID: {Uuid} - Status: {Status}",
+               filter.Uuid,
+               response.Status);
+
+            return response;
+
         }
         #endregion
 
@@ -196,41 +172,18 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                fileType,
                cfdiId);
 
-            try
-            {
+            var endpoint = $"cfdi/{fileType}/{cfdiType}/{cfdiId}";
+            var response = await _httpClient.GetAsync<CfdiDownloadResponse>(
+                endpoint,
+                null,
+                cancellationToken);
 
-                var endpoint = $"cfdi/{fileType}/{cfdiType}/{cfdiId}";
-                var response = await _httpClient.GetAsync<CfdiDownloadResponse>(
-                    endpoint,
-                    null,
-                    cancellationToken);
+            _logger.LogInformation(
+                "CFDI file downloaded successfully: {CfdiId}",
+                cfdiId);
 
-                _logger.LogInformation(
-                    "CFDI file downloaded successfully: {CfdiId}",
-                    cfdiId);
+            return response;
 
-                return response;
-            }
-            catch (FacturamaNotFoundException ex)
-            {
-                _logger.LogWarning(
-                    ex,
-                    "CFDI file not found: {CfdiId}",
-                    cfdiId);
-                throw;
-            }
-
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error downloading CFDI file with ID {CfdiId}: {Message}", cfdiId, ex.Message);
-                throw;
-            }
-
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unexpected error downloading CFDI file with ID {CfdiId}: {Message}", cfdiId, ex.Message);
-                throw;
-            }
         }
 
         #endregion
@@ -253,33 +206,24 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 cfdiType,
                 motive ?? "None");
 
-
-            try
+            var queryParams = new Dictionary<string, string?>
             {
+                ["type"] = cfdiType,
+                ["motive"] = motive,
+                ["uuidReplacement"] = uuidReplacement
+            };
 
-                var queryParams = new Dictionary<string, string?>
-                {
-                    ["type"] = cfdiType,
-                    ["motive"] = motive,
-                    ["uuidReplacement"] = uuidReplacement
-                };
+            var response = await _httpClient.DeleteAndResponseAsync<CfdiCancellationResponse>(
+                $"cfdi/{cfdiId}",
+                queryParams,
+                cancellationToken);
 
-                var response = await _httpClient.DeleteAndResponseAsync<CfdiCancellationResponse>(
-                    $"cfdi/{cfdiId}",
-                    queryParams,
-                    cancellationToken);
+            _logger.LogInformation(
+                "CFDI cancelled successfully: {CfdiId}",
+                cfdiId);
 
-                _logger.LogInformation(
-                    "CFDI cancelled successfully: {CfdiId}",
-                    cfdiId);
+            return response;
 
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(ex, "Error canceling CFDI with ID {CfdiId}: {Message}", cfdiId, ex.Message);
-                throw;
-            }
         }
         #endregion
 
@@ -301,42 +245,29 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 cfdiId,
                 email);
 
-            try
+            var queryParams = new Dictionary<string, string?>
             {
-                var queryParams = new Dictionary<string, string?>
-                {
-                    ["cfdiType"] = cfdiType,
-                    ["cfdiId"] = cfdiId,
-                    ["email"] = email
-                };
+                ["cfdiType"] = cfdiType,
+                ["cfdiId"] = cfdiId,
+                ["email"] = email
+            };
 
 
-                var response = await _httpClient.PostAsync<CfdiSendResponse>(
-                    "Cfdi",
-                    new { }, // Body vacío
-                    queryParams,
-                    cancellationToken);
+            var response = await _httpClient.PostAsync<CfdiSendResponse>(
+                "Cfdi",
+                new { }, // Body vacío
+                queryParams,
+                cancellationToken);
 
-                _logger.LogInformation(
-                    "CFDI {CfdiId} sent successfully to {Email}",
-                    cfdiId,
-                    email);
+            _logger.LogInformation(
+                "CFDI {CfdiId} sent successfully to {Email}",
+                cfdiId,
+                email);
 
-                return response;
-            }
-            catch (FacturamaException ex)
-            {
-                _logger.LogError(
-                    ex,
-                    "Error sending CFDI {CfdiId} to {Email}",
-                    cfdiId,
-                    email);
-                throw;
-            }
+            return response;
+
         }
         #endregion
-
-
 
     }
 

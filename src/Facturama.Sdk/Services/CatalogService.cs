@@ -7,7 +7,7 @@ namespace Facturama.Sdk.Services
 {
     public sealed class CatalogService : ICatalogService
     {
-        private string BaseEndpoint => "/api/Catalogs";
+        private string BaseEndpoint => "Catalogs";
 
         private readonly IApiWebHttpClient _httpClient;
         private readonly ILogger<CatalogService> _logger;
@@ -169,7 +169,7 @@ namespace Facturama.Sdk.Services
         {
 
             var queryParameters = new Dictionary<string, string>();
-            if(!string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
                 queryParameters["keyword"] = keyword;
             }
@@ -248,7 +248,7 @@ namespace Facturama.Sdk.Services
         public Task<IReadOnlyList<PaymentForm>> GetPaymentFormsAsync(
             CancellationToken cancellation = default)
         {
-      
+
             _logger.LogInformation("Fetching payment forms catalog");
             return _httpClient.GetAsync<IReadOnlyList<PaymentForm>>(
                 $"{BaseEndpoint}/paymentforms",
@@ -283,8 +283,5 @@ namespace Facturama.Sdk.Services
                 cancellation);
         }
 
-
-
-
-     }
+    }
 }
