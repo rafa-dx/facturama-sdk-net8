@@ -4,18 +4,18 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record DocumentacionAduanera
+    public sealed class DocumentacionAduanera
     {
         [JsonPropertyName("TipoDocumento")]
-        public string TipoDocumento { get; init; }
+        public string TipoDocumento { get; set; }
 
         [JsonPropertyName("NumPedimento")]
-        public string NumPedimento { get; init; }
+        public string NumPedimento { get; set; }
 
         [JsonPropertyName("IdentDocAduanero")]
-        public string IdentDocAduanero { get; init; }
+        public string IdentDocAduanero { get; set; }
 
         [JsonPropertyName("RFCImpo")]
-        public string RFCImpo { get; init; }
+        public string RFCImpo { get; set; }
     }
 }

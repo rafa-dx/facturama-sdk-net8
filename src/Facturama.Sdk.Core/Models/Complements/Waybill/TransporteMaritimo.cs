@@ -1,41 +1,41 @@
 ﻿namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record TransporteMaritimo
+    public sealed class TransporteMaritimo
     {
-        public string PermSCT { get; init; }
-        public string NumPermisoSCT { get; init; }
-        public string NombreAseg { get; init; }
-        public string NumPolizaSeguro { get; init; }
-        public string TipoEmbarcacion { get; init; }
+        public string PermSCT { get; set; }
+        public string NumPermisoSCT { get; set; }
+        public string NombreAseg { get; set; }
+        public string NumPolizaSeguro { get; set; }
+        public string TipoEmbarcacion { get; set; }
 
-        public string Matricula { get; init; }
+        public string Matricula { get; set; }
 
-        public string NumeroOMI { get; init; }
-        public int AnioEmbarcacion { get; init; }
-        public string NombreEmbarc { get; init; }
+        public string NumeroOMI { get; set; }
+        public int AnioEmbarcacion { get; set; }
+        public string NombreEmbarc { get; set; }
 
-        public string NacionalidadEmbarc { get; init; }
+        public string NacionalidadEmbarc { get; set; }
 
-        public decimal UnidadesDeArqBruto { get; init; }
+        public decimal UnidadesDeArqBruto { get; set; }
 
-        public string TipoCarga { get; init; }
+        public string TipoCarga { get; set; }
 
-        public string NumCertITC { get; init; }
-        public decimal Eslora { get; init; }
-        public decimal Manga { get; init; }
-        public decimal Calado { get; init; }
+        public string NumCertITC { get; set; }
+        public decimal Eslora { get; set; }
+        public decimal Manga { get; set; }
+        public decimal Calado { get; set; }
 
-        public decimal Puntal { get; init; }
-        public string LineaNaviera { get; init; }
+        public decimal Puntal { get; set; }
+        public string LineaNaviera { get; set; }
 
-        public string NombreAgenteNaviero { get; init; }
+        public string NombreAgenteNaviero { get; set; }
 
-        public string NumAutorizacionNaviero { get; init; }
-        public string NumViaje { get; init; }
-        public string NumConocEmbarc { get; init; }
+        public string NumAutorizacionNaviero { get; set; }
+        public string NumViaje { get; set; }
+        public string NumConocEmbarc { get; set; }
 
-        public string PermisoTempNavegacion { get; init; }
+        public string PermisoTempNavegacion { get; set; }
 
-        public Contenedor[] Contenedor { get; init; }
+        public Contenedor[] Contenedor { get; set; }
     }
 }

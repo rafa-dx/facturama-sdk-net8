@@ -6,33 +6,33 @@ using System.Threading.Tasks;
 
 namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
 {
-    public sealed record Emisor
+    public sealed class Emisor
     {
         /// <summary>
         /// Atributo requerido para incorporar la clave en el Registro
         /// Federal de Contribuyentes correspondiente al
         ///	contribuyente emisor del documento de retención e información de pagos, sin guiones o espacios.
         /// </summary>		
-        public string RfcEmisor { get; init; }
+        public string RfcEmisor { get; set; }
 
         /// <summary>
         /// Atributo opcional para el nombre, denominación o razón
         /// social del contribuyente emisor del documento de retención e información de pagos
         /// </summary>		
-        public string NomDenRazSocE { get; init; }
+        public string NomDenRazSocE { get; set; }
 
         /// <summary>
         /// Atributo opcional para la Clave Única del Registro
         /// Poblacional del contribuyente emisor del documento de
         ///	retención e información de pagos.
         /// </summary>		
-        public string CurpE { get; init; }
+        public string CurpE { get; set; }
 
         /// <summary>
         /// Atributo requerido para incorporar la clave del régimen del contribuyente
         /// emisor del comprobante que ampara retenciones e información de
         /// pagos.
         /// </summary>
-        public string RegimenFiscalE { get; init; }
+        public string RegimenFiscalE { get; set; }
     }
 }

@@ -3,18 +3,18 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record CantidadTransporta
+    public sealed class CantidadTransporta
     {
         [JsonPropertyName("Cantidad")]
-        public decimal Cantidad { get; init; }
+        public decimal Cantidad { get; set; }
 
         [JsonPropertyName("IDOrigen")]
-        public string IDOrigen { get; init; }
+        public string IDOrigen { get; set; }
 
         [JsonPropertyName("IDDestino")]
-        public string IDDestino { get; init; }
+        public string IDDestino { get; set; }
 
         [JsonPropertyName("CvesTransporte")]
-        public string CvesTransporte { get; init; }
+        public string CvesTransporte { get; set; }
     }
 }

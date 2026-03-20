@@ -3,27 +3,27 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record PerceptionsDetail
+    public sealed class PerceptionsDetail
     {
         [JsonPropertyName("ActionsOrTitles")]
-        public ActionsOrTitles ActionsOrTitles { get; init; }
+        public ActionsOrTitles ActionsOrTitles { get; set; }
 
         [JsonPropertyName("ExtraHours")]
-        public ExtraHour[] ExtraHours { get; init; }
+        public ExtraHour[] ExtraHours { get; set; }
 
         [JsonPropertyName("PerceptionType")]
-        public string PerceptionType { get; init; }
+        public string PerceptionType { get; set; }
 
         [JsonPropertyName("Code")]
-        public string Code { get; init; }
+        public string Code { get; set; }
 
         [JsonPropertyName("Description")]
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         [JsonPropertyName("TaxedAmount")]
-        public decimal TaxedAmount { get; init; }
+        public decimal TaxedAmount { get; set; }
 
         [JsonPropertyName("ExemptAmount")]
-        public decimal ExemptAmount { get; init; }
+        public decimal ExemptAmount { get; set; }
     }
 }

@@ -2,27 +2,27 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Seguros
+    public sealed class Seguros
     {
         [JsonPropertyName("AseguraRespCivil")]
-        public string AseguraRespCivil { get; init; }
+        public string AseguraRespCivil { get; set; }
 
         [JsonPropertyName("PolizaRespCivil")]
-        public string PolizaRespCivil { get; init; }
+        public string PolizaRespCivil { get; set; }
 
         [JsonPropertyName("AseguraMedAmbiente")]
-        public string AseguraMedAmbiente { get; init; }
+        public string AseguraMedAmbiente { get; set; }
 
         [JsonPropertyName("PolizaMedAmbiente")]
-        public string PolizaMedAmbiente { get; init; }
+        public string PolizaMedAmbiente { get; set; }
 
         [JsonPropertyName("AseguraCarga")]
-        public string AseguraCarga { get; init; }
+        public string AseguraCarga { get; set; }
 
         [JsonPropertyName("PolizaCarga")]
-        public string PolizaCarga { get; init; }
+        public string PolizaCarga { get; set; }
 
         [JsonPropertyName("PrimaSeguro")]
-        public decimal PrimaSeguro { get; init; }
+        public decimal PrimaSeguro { get; set; }
     }
 }

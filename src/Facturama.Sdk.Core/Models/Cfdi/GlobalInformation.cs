@@ -4,15 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record  GlobalInformation
+    public sealed class  GlobalInformation
     {
         [JsonPropertyName("Periodicity")]
-        public string Periodicity { get; init; }
+        public string Periodicity { get; set; }
 
         [JsonPropertyName("Months")]
-        public string Months { get; init; }
+        public string Months { get; set; }
 
         [JsonPropertyName("Year")]
-        public short Year { get; init; }
+        public short Year { get; set; }
     }
 }

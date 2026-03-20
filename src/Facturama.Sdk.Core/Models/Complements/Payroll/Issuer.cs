@@ -3,18 +3,18 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Issuer
+    public sealed class Issuer
     {
         [JsonPropertyName("EntitySNCF")]
-        public EntitySncf EntitySncf { get; init; }
+        public EntitySncf EntitySncf { get; set; }
 
         [JsonPropertyName("Curp")]
-        public string Curp { get; init; }
+        public string Curp { get; set; }
 
         [JsonPropertyName("EmployerRegistration")]
-        public string EmployerRegistration { get; init; }
+        public string EmployerRegistration { get; set; }
 
         [JsonPropertyName("FromEmployerRfc")]
-        public string FromEmployerRfc { get; init; }
+        public string FromEmployerRfc { get; set; }
     }
 }

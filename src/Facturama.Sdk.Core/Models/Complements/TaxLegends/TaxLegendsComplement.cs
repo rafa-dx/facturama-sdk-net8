@@ -3,22 +3,22 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.TaxLegends
 {
-    public sealed record TaxLegendsComplement
+    public sealed class TaxLegendsComplement
     {
         [JsonPropertyName("Legends")]
-        public Legend[] Legends { get; init; }
+        public Legend[] Legends { get; set; }
 
     }
     public class Legend
     {
         [JsonPropertyName("TaxProvision")]
-        public string TaxProvision { get; init; }
+        public string TaxProvision { get; set; }
 
         [JsonPropertyName("Norm")]
-        public string Norm { get; init; }
+        public string Norm { get; set; }
 
         [JsonPropertyName("Text")]
-        public string Text { get; init; }
+        public string Text { get; set; }
     }
 }
 

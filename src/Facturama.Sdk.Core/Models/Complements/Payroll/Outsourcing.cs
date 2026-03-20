@@ -3,13 +3,13 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Outsourcing
+    public sealed class Outsourcing
     {
 
         [JsonPropertyName("RfcContractor")]
-        public string RfcContractor { get; init; }
+        public string RfcContractor { get; set; }
 
         [JsonPropertyName("PercentageTime")]
-        public decimal PercentageTime { get; init; }
+        public decimal PercentageTime { get; set; }
     }
 }

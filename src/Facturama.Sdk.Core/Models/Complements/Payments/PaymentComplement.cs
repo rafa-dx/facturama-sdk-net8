@@ -3,9 +3,9 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payments
 {
-    public sealed record PaymentComplement
+    public sealed class PaymentComplement
     {
         [JsonPropertyName("Payments")]
-        public IReadOnlyList<Payment> Payments { get; init; } = [];
+        public IReadOnlyList<Payment> Payments { get; set; } = [];
     }
 }

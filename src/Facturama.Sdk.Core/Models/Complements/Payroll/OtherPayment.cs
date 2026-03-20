@@ -3,24 +3,24 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record OtherPayment
+    public sealed class OtherPayment
     {
         [JsonPropertyName("EmploymentSubsidy")]
-        public EmploymentSubsidy EmploymentSubsidy { get; init; }
+        public EmploymentSubsidy EmploymentSubsidy { get; set; }
 
         [JsonPropertyName("Compensation")]
-        public Compensation Compensation { get; init; }
+        public Compensation Compensation { get; set; }
 
         [JsonPropertyName("OtherPaymentType")]
-        public string OtherPaymentType { get; init; }
+        public string OtherPaymentType { get; set; }
 
         [JsonPropertyName("Code")]
-        public string Code { get; init; }
+        public string Code { get; set; }
 
         [JsonPropertyName("Description")]
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         [JsonPropertyName("Amount")]
-        public decimal Amount { get; init; }
+        public decimal Amount { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record DerechosDePaso
+    public sealed class DerechosDePaso
     {
-        public string TipoDerechoDePaso { get; init; }
+        public string TipoDerechoDePaso { get; set; }
 
-        public string KilometrajePagado { get; init; }
+        public string KilometrajePagado { get; set; }
     }
 }

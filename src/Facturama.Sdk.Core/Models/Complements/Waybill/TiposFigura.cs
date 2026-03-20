@@ -2,19 +2,19 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record TiposFigura
+    public sealed class TiposFigura
     {
-        public PartesTransporte[] PartesTransporte { get; init; }
-        public string TipoFigura { get; init; }
-        public string RFCFigura { get; init; }
+        public PartesTransporte[] PartesTransporte { get; set; }
+        public string TipoFigura { get; set; }
+        public string RFCFigura { get; set; }
 
-        public string NumLicencia { get; init; }
+        public string NumLicencia { get; set; }
 
-        public string NombreFigura { get; init; }
+        public string NombreFigura { get; set; }
 
-        public string NumRegIdTribFigura { get; init; }
-        public string ResidenciaFiscalFigura { get; init; }
+        public string NumRegIdTribFigura { get; set; }
+        public string ResidenciaFiscalFigura { get; set; }
 
-        public Domicilio Domicilio { get; init; }
+        public Domicilio Domicilio { get; set; }
     }
 }

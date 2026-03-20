@@ -5,59 +5,59 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record Item
+    public sealed class Item
     {
         [JsonPropertyName("IdProduct")]
-        public  string? ProductId { get; init; }
+        public  string? ProductId { get; set; }
 
         [JsonPropertyName("ProductCode")]
-        public required string ProductCode { get; init; }
+        public required string ProductCode { get; set; }
 
         [JsonPropertyName("SKU")]
-        public string? SKU { get; init; }
+        public string? SKU { get; set; }
 
         [JsonPropertyName("IdentificationNumber")]
-        public string? IdentificationNumber { get; init; }
+        public string? IdentificationNumber { get; set; }
 
         [JsonPropertyName("Description")]
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         [JsonPropertyName("Unit")]
-        public string? Unit { get; init; }
+        public string? Unit { get; set; }
 
         [JsonPropertyName("UnitCode")]
-        public string? UnitCode { get; init; }
+        public string? UnitCode { get; set; }
 
         [JsonPropertyName("UnitPrice")]
-        public decimal UnitPrice { get; init; }
+        public decimal UnitPrice { get; set; }
 
         [JsonPropertyName("Quantity")]
-        public decimal Quantity { get; init; }
+        public decimal Quantity { get; set; }
 
         [JsonPropertyName("Subtotal")]
-        public decimal Subtotal { get; init; }
+        public decimal Subtotal { get; set; }
 
         [JsonPropertyName("TaxObject")]
-        public string TaxObject { get; init; }
+        public string TaxObject { get; set; }
 
         [JsonPropertyName("ThirdPartyAccount")]
-        public ThirdPartyAccountComplement ThirdPartyAccount { get; init; }
+        public ThirdPartyAccountComplement ThirdPartyAccount { get; set; }
 
         [JsonPropertyName("Discount")]
-        public decimal? Discount { get; init; }
+        public decimal? Discount { get; set; }
 
         [JsonPropertyName("Taxes")]
-        public List<Tax> Taxes { get; init; }
+        public List<Tax> Taxes { get; set; }
 
         [JsonPropertyName("PropertyTaxIDNumber")]
-        public List<string> PropertyTaxIDNumber { get; init; }
+        public List<string> PropertyTaxIDNumber { get; set; }
 
         [JsonPropertyName("NumerosPedimento")]
-        public List<string> NumerosPedimento { get; init; }
+        public List<string> NumerosPedimento { get; set; }
 
         [JsonPropertyName("Total")]
-        public decimal Total { get; init; }
+        public decimal Total { get; set; }
 
-        public ItemComplement? Complement { get; init; }
+        public ItemComplement? Complement { get; set; }
     }
 }

@@ -2,22 +2,22 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payments
 {
-    public sealed record RelatedDocument
+    public sealed class RelatedDocument
     {
-        public string Uuid { get; init; }
-        public string Serie { get; init; }
-        public string Folio { get; init; }
-        public string Currency { get; init; }
-        public string EquivalenceDocRel { get; init; }
-        public decimal? ExchangeRate { get; init; }
-        public string PaymentMethod { get; init; }
-        public int PartialityNumber { get; init; }
-        public decimal PreviousBalanceAmount { get; init; }
-        public decimal AmountPaid { get; init; }
-        public string TaxObject { get; init; }
+        public string Uuid { get; set; }
+        public string Serie { get; set; }
+        public string Folio { get; set; }
+        public string Currency { get; set; }
+        public string EquivalenceDocRel { get; set; }
+        public decimal? ExchangeRate { get; set; }
+        public string PaymentMethod { get; set; }
+        public int PartialityNumber { get; set; }
+        public decimal PreviousBalanceAmount { get; set; }
+        public decimal AmountPaid { get; set; }
+        public string TaxObject { get; set; }
 
-        public string ImpSaldoInsoluto { get; init; }
+        public string ImpSaldoInsoluto { get; set; }
 
-        public List<Tax> Taxes { get; init; }
+        public List<Tax> Taxes { get; set; }
     }
 }

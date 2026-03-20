@@ -3,9 +3,9 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record RegimenAduaneroCPP
+    public sealed class RegimenAduaneroCPP
     {
         [JsonPropertyName("RegimenAduanero")]
-        public string RegimenAduanero { get; init; }
+        public string RegimenAduanero { get; set; }
     }
 }

@@ -3,15 +3,15 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Compensation
+    public sealed class Compensation
     {
         [JsonPropertyName("PositiveBalance")]
-        public decimal PositiveBalance { get; init; }
+        public decimal PositiveBalance { get; set; }
 
         [JsonPropertyName("Year")]
-        public short Year { get; init; }
+        public short Year { get; set; }
 
         [JsonPropertyName("RemainingPositiveBalance")]
-        public decimal RemainingPositiveBalance { get; init; }
+        public decimal RemainingPositiveBalance { get; set; }
     }
 }

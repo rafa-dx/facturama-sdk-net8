@@ -2,7 +2,7 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.EducationalInstitution
 {
-    public sealed record EducationalInstitutionComplement
+    public sealed class EducationalInstitutionComplement
     {
         /// <summary>
         /// Nombre del alumno

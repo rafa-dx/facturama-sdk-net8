@@ -3,36 +3,36 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Domicilio
+    public sealed class Domicilio
     {
         [JsonPropertyName("Calle")]
-        public string Calle { get; init; }
+        public string Calle { get; set; }
 
         [JsonPropertyName("NumeroExterior")]
-        public string NumeroExterior { get; init; }
+        public string NumeroExterior { get; set; }
 
         [JsonPropertyName("NumeroInterior")]
-        public string NumeroInterior { get; init; }
+        public string NumeroInterior { get; set; }
 
         [JsonPropertyName("Colonia")]
-        public string Colonia { get; init; }
+        public string Colonia { get; set; }
 
         [JsonPropertyName("Localidad")]
-        public string Localidad { get; init; }
+        public string Localidad { get; set; }
 
         [JsonPropertyName("Referencia")]
-        public string Referencia { get; init; }
+        public string Referencia { get; set; }
 
         [JsonPropertyName("Municipio")]
-        public string Municipio { get; init; }
+        public string Municipio { get; set; }
 
         [JsonPropertyName("Estado")]
-        public string Estado { get; init; }
+        public string Estado { get; set; }
 
         [JsonPropertyName("Pais")]
-        public string Pais { get; init; }
+        public string Pais { get; set; }
 
         [JsonPropertyName("CodigoPostal")]
-        public string CodigoPostal { get; init; }
+        public string CodigoPostal { get; set; }
     }
 }

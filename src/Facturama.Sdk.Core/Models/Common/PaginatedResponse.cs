@@ -3,24 +3,24 @@
 
 namespace Facturama.Sdk.Core.Models.Common
 {
-    public sealed record  PaginatedResponse<T>
+    public sealed class  PaginatedResponse<T>
     {
         [JsonPropertyName("data")]
-        public required IReadOnlyList<T> Items { get; init; }
+        public required IReadOnlyList<T> Items { get; set; }
 
 
         /// <summary>Total de registros sin filtros</summary>
-        [JsonPropertyName("recordsTotal")]
-        public required int TotalRecords { get; init; }
+        [JsonPropertyName("classsTotal")]
+        public required int Totalclasss { get; set; }
 
         /// <summary>Total de registros después de aplicar filtros</summary>
-        [JsonPropertyName("recordsFiltered")]
-        public required int FilteredRecords { get; init; }
+        [JsonPropertyName("classsFiltered")]
+        public required int Filteredclasss { get; set; }
 
         /// <summary>Índice inicial solicitado</summary>
-        //public required int Start { get; init; }
+        //public required int Start { get; set; }
 
         /// <summary>Cantidad solicitada</summary>
-        //public required int Length { get; init; }
+        //public required int Length { get; set; }
     }
 }

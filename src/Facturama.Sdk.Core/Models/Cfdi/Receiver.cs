@@ -3,33 +3,33 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record Receiver
+    public sealed class Receiver
     {
         [JsonPropertyName("Id")]
-        public string Id { get; init; }
+        public string Id { get; set; }
 
         [JsonPropertyName("Rfc")]
-        public string Rfc { get; init; }
+        public string Rfc { get; set; }
 
         [JsonPropertyName("Name")]
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         [JsonPropertyName("CfdiUse")]
-        public string CfdiUse { get; init; }
+        public string CfdiUse { get; set; }
 
         [JsonPropertyName("FiscalRegime")]
-        public string FiscalRegime { get; init; }
+        public string FiscalRegime { get; set; }
 
         [JsonPropertyName("TaxZipCode")]
-        public string TaxZipCode { get; init; }
+        public string TaxZipCode { get; set; }
 
         [JsonPropertyName("TaxResidence")]
-        public string TaxResidence { get; init; }
+        public string TaxResidence { get; set; }
 
         [JsonPropertyName("TaxRegistrationNumber")]
-        public string TaxRegistrationNumber { get; init; }
+        public string TaxRegistrationNumber { get; set; }
 
         [JsonPropertyName("Address")]
-        public Address Address { get; init; }
+        public Address Address { get; set; }
     }
 }

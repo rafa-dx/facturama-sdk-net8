@@ -10,24 +10,24 @@ namespace Facturama.Sdk.Core.Models.Request
         /// Rfc, consultado
         /// </summary>
         [JsonPropertyName("Rfc")]
-        public string Rfc { get; init; }
+        public string Rfc { get; set; }
 
         /// <summary>
         /// Name, Nombre Fiscal
         /// </summary>
         [JsonPropertyName("Name")]
-        public string Name { get; init; }
+        public string Name { get; set; }
 
         /// <summary>
         /// ZipCode, Codigo postal 
         /// </summary>
         [JsonPropertyName("ZipCode")]
-        public string ZipCode { get; init; }
+        public string ZipCode { get; set; }
 
         /// <summary>
         /// FiscalRegime, Regimen Fiscal
         /// </summary>
         [JsonPropertyName("FiscalRegime")]
-        public string FiscalRegime { get; init; }
+        public string FiscalRegime { get; set; }
     }
 }

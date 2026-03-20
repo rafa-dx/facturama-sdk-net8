@@ -3,7 +3,7 @@
     public sealed record ImageRequest
     {
 
-        public string Img { get; init; }
-        public string Type { get; init; }
+        public string Img { get; set; }
+        public string Type { get; set; }
     }
 }

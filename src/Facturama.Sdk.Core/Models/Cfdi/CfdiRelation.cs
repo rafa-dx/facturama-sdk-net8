@@ -3,9 +3,9 @@
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record CfdiRelation
+    public sealed class CfdiRelation
     {
         [JsonPropertyName("Uuid")]
-        public string Uuid { get; init; }
+        public string Uuid { get; set; }
     }
 }

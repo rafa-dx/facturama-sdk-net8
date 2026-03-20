@@ -3,18 +3,18 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-     public sealed record DeductionsDetail
+     public sealed class DeductionsDetail
     {
         [JsonPropertyName("DeduccionType")]
-        public string DeduccionType { get; init; }
+        public string DeduccionType { get; set; }
 
         [JsonPropertyName("Code")]
-        public string Code { get; init; }
+        public string Code { get; set; }
 
         [JsonPropertyName("Description")]
-        public string Description { get; init; }
+        public string Description { get; set; }
 
         [JsonPropertyName("Amount")]
-        public decimal Amount { get; init; }
+        public decimal Amount { get; set; }
     }
 }

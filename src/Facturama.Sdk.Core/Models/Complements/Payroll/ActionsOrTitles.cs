@@ -3,13 +3,13 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record ActionsOrTitles
+    public sealed class ActionsOrTitles
     {
 
         [JsonPropertyName("MarketValue")]
-        public decimal MarketValue { get; init; }
+        public decimal MarketValue { get; set; }
 
         [JsonPropertyName("PriceWhenGranting")]
-        public decimal PriceWhenGranting { get; init; }
+        public decimal PriceWhenGranting { get; set; }
     }
 }

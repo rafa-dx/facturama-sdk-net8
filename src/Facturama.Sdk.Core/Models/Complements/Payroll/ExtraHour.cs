@@ -3,19 +3,19 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record ExtraHour
+    public sealed class ExtraHour
     {
         [JsonPropertyName("Days")]
-        public int Days { get; init; }
+        public int Days { get; set; }
 
         [JsonPropertyName("HoursType")]
-        public string HoursType { get; init; }
+        public string HoursType { get; set; }
 
         [JsonPropertyName("ExtraHours")]
-        public int ExtraHours { get; init; }
+        public int ExtraHours { get; set; }
 
         [JsonPropertyName("PaidAmount")]
-        public decimal PaidAmount { get; init; }
+        public decimal PaidAmount { get; set; }
 
     }
 }

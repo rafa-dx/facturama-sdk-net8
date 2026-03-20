@@ -25,45 +25,45 @@ namespace Facturama.Sdk.Core.Models.Complements.Waybill
         [EnumMember(Value = "Destino")]
         Destino,
     }
-    public sealed record ComplementoCartaPorte31
+    public sealed class ComplementoCartaPorte31
     {
         [JsonPropertyName("IdCCP")]
-        public string IdCCP { get; init; }
+        public string IdCCP { get; set; }
 
         [JsonPropertyName("TranspInternac")]
-        public TranspInternac TranspInternac { get; init; }
+        public TranspInternac TranspInternac { get; set; }
 
         [JsonPropertyName("RegimensAduaneros")]
-        public RegimenAduaneroCPP[] RegimenesAduaneros { get; init; }
+        public RegimenAduaneroCPP[] RegimenesAduaneros { get; set; }
 
         [JsonPropertyName("EntradaSalidaMerc")]
-        public string EntradaSalidaMerc { get; init; }
+        public string EntradaSalidaMerc { get; set; }
 
         [JsonPropertyName("PaisOrigenDestino")]
-        public string PaisOrigenDestino { get; init; }
+        public string PaisOrigenDestino { get; set; }
 
         [JsonPropertyName("ViaEntradaSalida")]
-        public string ViaEntradaSalida { get; init; }
+        public string ViaEntradaSalida { get; set; }
 
         [JsonPropertyName("TotalDistRec")]
-        public decimal? TotalDistRec { get; init; }
+        public decimal? TotalDistRec { get; set; }
 
         [JsonPropertyName("RegistroISTMO")]
-        public RegistroISTMO? RegistroISTMO { get; init; }
+        public RegistroISTMO? RegistroISTMO { get; set; }
 
         [JsonPropertyName("UbicacionPoloOrigen")]
-        public string UbicacionPoloOrigen { get; init; }
+        public string UbicacionPoloOrigen { get; set; }
 
         [JsonPropertyName("UbicacionPoloDestino")]
-        public string UbicacionPoloDestino { get; init; }
+        public string UbicacionPoloDestino { get; set; }
 
         [JsonPropertyName("Ubicaciones")]
-        public Ubicacion[] Ubicaciones { get; init; }
+        public Ubicacion[] Ubicaciones { get; set; }
 
         [JsonPropertyName("Mercancias")]
-        public Mercancias Mercancias { get; init; }
+        public Mercancias Mercancias { get; set; }
 
         [JsonPropertyName("FiguraTransporte")]
-        public TiposFigura[] FiguraTransporte { get; init; }
+        public TiposFigura[] FiguraTransporte { get; set; }
     }
 }

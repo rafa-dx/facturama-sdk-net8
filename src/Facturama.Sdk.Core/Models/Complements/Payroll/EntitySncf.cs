@@ -3,12 +3,12 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record EntitySncf
+    public sealed class EntitySncf
     {
         [JsonPropertyName("OriginSource")]
-        public string OriginSource { get; init; }
+        public string OriginSource { get; set; }
 
         [JsonPropertyName("AmountOriginSource")]
-        public decimal? AmountOriginSource { get; init; }
+        public decimal? AmountOriginSource { get; set; }
     }
 }

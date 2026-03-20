@@ -3,16 +3,16 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Perceptions
+    public sealed class Perceptions
     {
 
         [JsonPropertyName("Details")]
-        public PerceptionsDetail[] Details { get; init; }
+        public PerceptionsDetail[] Details { get; set; }
 
         [JsonPropertyName("Retirement")]
-        public Retirement Retirement { get; init; }
+        public Retirement Retirement { get; set; }
 
         [JsonPropertyName("Indemnification")]
-        public Indemnification Indemnification { get; init; }
+        public Indemnification Indemnification { get; set; }
     }
 }

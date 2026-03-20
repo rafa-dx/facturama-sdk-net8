@@ -2,7 +2,7 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record GuiasIdentificacion
+    public sealed class GuiasIdentificacion
     {
         [JsonPropertyName("NumeroGuiaIdentificacion")]
         public string NumeroGuiaIdentificacion { get; set; }

@@ -3,21 +3,21 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Retirement
+    public sealed class Retirement
     {
         [JsonPropertyName("TotalASinglePayment")]
-        public decimal? TotalASinglePayment { get; init; }
+        public decimal? TotalASinglePayment { get; set; }
 
         [JsonPropertyName("TotalParciality")]
-        public decimal? TotalParciality { get; init; }
+        public decimal? TotalParciality { get; set; }
 
         [JsonPropertyName("DailyAmount")]
-        public decimal? DailyAmount { get; init; }
+        public decimal? DailyAmount { get; set; }
 
         [JsonPropertyName("AccumulatedIncome")]
-        public decimal AccumulatedIncome { get; init; }
+        public decimal AccumulatedIncome { get; set; }
 
         [JsonPropertyName("NonAccumulatedIncome")]
-        public decimal NonAccumulatedIncome { get; init; }
+        public decimal NonAccumulatedIncome { get; set; }
     }
 }

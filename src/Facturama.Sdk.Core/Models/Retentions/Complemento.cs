@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
 {
-    public sealed record Complemento
+    public sealed class Complemento
     {
         /// <summary>
 		/// Complemento para expresar la información sobre los servicios prestados
 		/// por personas físicas que utilicen plataformas tecnológicas.
 		/// </summary>
-		public ServiciosPlataformasTecnologicas ServiciosPlataformasTecnologicas { get; init; }
+		public ServiciosPlataformasTecnologicas ServiciosPlataformasTecnologicas { get; set; }
 
         /// <summary>
         /// Timbre Fiscal
         /// </summary>
-        public TimbreFiscalDigital TimbreFiscalDigital { get; init; }
+        public TimbreFiscalDigital TimbreFiscalDigital { get; set; }
 
         /// <summary>
         /// Complemento para expresar los intereses obtenidos por rendimiento en inversiones
         /// </summary>
-        public Intereses Intereses { get; init; }
+        public Intereses Intereses { get; set; }
     }
 }

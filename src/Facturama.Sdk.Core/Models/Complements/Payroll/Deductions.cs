@@ -3,7 +3,7 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Deductions
+    public sealed class Deductions
     {
         [JsonPropertyName("Details")]
         public DeductionsDetail[] Details { get; set; }

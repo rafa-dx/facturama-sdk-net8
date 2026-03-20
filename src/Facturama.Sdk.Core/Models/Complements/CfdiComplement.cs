@@ -10,13 +10,13 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Complements
 {
-    public sealed record CfdiComplement
+    public sealed class CfdiComplement
     {
         [JsonPropertyName("Donation")]
-        public DonationComplement? Donation { get; init; }
+        public DonationComplement? Donation { get; set; }
 
         [JsonPropertyName("Payments")]
-        public PaymentComplement? Payments { get; init; }
+        public PaymentComplement? Payments { get; set; }
 
         [JsonPropertyName("TaxStamp")]
         public TaxStampResponse TaxStamp { get; set; }

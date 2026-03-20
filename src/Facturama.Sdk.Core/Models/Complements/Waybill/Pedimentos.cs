@@ -3,9 +3,9 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Pedimentos
+    public sealed class Pedimentos
     {
         [JsonPropertyName("Pedimento")]
-        public string Pedimento { get; init; }
+        public string Pedimento { get; set; }
     }
 }

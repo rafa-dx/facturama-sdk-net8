@@ -3,13 +3,13 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Remolque
+    public sealed class Remolque
     {
         [JsonPropertyName("SubTipoRem")]
-        public string SubTipoRem { get; init; }
+        public string SubTipoRem { get; set; }
 
 
         [JsonPropertyName("Placa")]
-        public string Placa { get; init; }
+        public string Placa { get; set; }
     }
 }

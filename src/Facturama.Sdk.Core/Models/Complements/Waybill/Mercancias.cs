@@ -3,42 +3,42 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Mercancias
+    public sealed class Mercancias
     {
 
         [JsonPropertyName("PesoBrutoTotal")]
-        public decimal PesoBrutoTotal { get; init; }
+        public decimal PesoBrutoTotal { get; set; }
 
         [JsonPropertyName("UnidadPeso")]
-        public string UnidadPeso { get; init; }
+        public string UnidadPeso { get; set; }
 
 
         [JsonPropertyName("PesoNetoTotal")]
-        public decimal PesoNetoTotal { get; init; }
+        public decimal PesoNetoTotal { get; set; }
 
         [JsonPropertyName("NumTotalMercancias")]
-        public int NumTotalMercancias { get; init; }
+        public int NumTotalMercancias { get; set; }
 
         [JsonPropertyName("CargoPorTasacion")]
-        public decimal CargoPorTasacion { get; init; }
+        public decimal CargoPorTasacion { get; set; }
 
         [JsonPropertyName("LogisticaInversaRecoleccionDevolucion")]
-        public string LogisticaInversaRecoleccionDevolucion { get; init; }
+        public string LogisticaInversaRecoleccionDevolucion { get; set; }
 
 
         [JsonPropertyName("Mercancia")]
-        public Mercancia[] Mercancia { get; init; }
+        public Mercancia[] Mercancia { get; set; }
 
         [JsonPropertyName("Autotransporte")]
-        public Autotransporte Autotransporte { get; init; }
+        public Autotransporte Autotransporte { get; set; }
 
         [JsonPropertyName("TransporteMaritimo")]
-        public TransporteMaritimo TransporteMaritimo { get; init; }
+        public TransporteMaritimo TransporteMaritimo { get; set; }
 
         [JsonPropertyName("TransporteAereo")]
-        public TransporteAereo TransporteAereo { get; init; }
+        public TransporteAereo TransporteAereo { get; set; }
 
         [JsonPropertyName("TransporteFerroviario")]
-        public TransporteFerroviario TransporteFerroviario { get; init; }
+        public TransporteFerroviario TransporteFerroviario { get; set; }
     }
 }

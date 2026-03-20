@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
 {
-    public sealed record Intereses
+    public sealed class Intereses
     {
-        public string Version { get; init; }
-        public InteresesSistFinanciero SistFinanciero { get; init; }
-        public InteresesRetiroAORESRetInt RetiroAORESRetInt { get; init; }
-        public InteresesOperFinancDerivad OperFinancDerivad { get; init; }
-        public decimal MontIntNominal { get; init; }
-        public decimal MontIntReal { get; init; }
-        public decimal Perdida { get; init; }
+        public string Version { get; set; }
+        public InteresesSistFinanciero SistFinanciero { get; set; }
+        public InteresesRetiroAORESRetInt RetiroAORESRetInt { get; set; }
+        public InteresesOperFinancDerivad OperFinancDerivad { get; set; }
+        public decimal MontIntNominal { get; set; }
+        public decimal MontIntReal { get; set; }
+        public decimal Perdida { get; set; }
     }
     public enum InteresesSistFinanciero
     {

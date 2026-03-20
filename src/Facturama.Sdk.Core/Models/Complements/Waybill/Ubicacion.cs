@@ -3,45 +3,45 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Ubicacion
+    public sealed class Ubicacion
     {
         [JsonPropertyName("Domicilio")]
-        public Domicilio Domicilio { get; init; }
+        public Domicilio Domicilio { get; set; }
 
         [JsonPropertyName("TipoUbicacion")]
-        public TipoUbicacion TipoUbicacion { get; init; }
+        public TipoUbicacion TipoUbicacion { get; set; }
 
         [JsonPropertyName("IDUbicacion")]
-        public string IDUbicacion { get; init; }
+        public string IDUbicacion { get; set; }
 
         [JsonPropertyName("RFCRemitenteDestinatario")]
-        public string RFCRemitenteDestinatario { get; init; }
+        public string RFCRemitenteDestinatario { get; set; }
 
         [JsonPropertyName("NombreRemitenteDestinatario")]
-        public string NombreRemitenteDestinatario { get; init; }
+        public string NombreRemitenteDestinatario { get; set; }
 
         [JsonPropertyName("NumRegIdTrib")]
-        public string NumRegIdTrib { get; init; }
+        public string NumRegIdTrib { get; set; }
 
         [JsonPropertyName("ResidenciaFiscal")]
-        public string ResidenciaFiscal { get; init; }
+        public string ResidenciaFiscal { get; set; }
 
         [JsonPropertyName("NumEstacion")]
-        public string NumEstacion { get; init; }
+        public string NumEstacion { get; set; }
 
         [JsonPropertyName("NombreEstacion")]
-        public string NombreEstacion { get; init; }
+        public string NombreEstacion { get; set; }
 
         [JsonPropertyName("NavegacionTrafico")]
-        public string NavegacionTrafico { get; init; }
+        public string NavegacionTrafico { get; set; }
 
         [JsonPropertyName("FechaHoraSalidaLlegada")]
-        public DateTime FechaHoraSalidaLlegada { get; init; }
+        public DateTime FechaHoraSalidaLlegada { get; set; }
 
         [JsonPropertyName("TipoEstacion")]
-        public string TipoEstacion { get; init; }
+        public string TipoEstacion { get; set; }
 
         [JsonPropertyName("DistanciaRecorrida")]
-        public decimal DistanciaRecorrida { get; init; }
+        public decimal DistanciaRecorrida { get; set; }
     }
 }

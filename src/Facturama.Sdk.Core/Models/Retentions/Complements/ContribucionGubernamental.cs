@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
 {
-    public sealed record ContribucionGubernamental
+    public sealed class ContribucionGubernamental
     {
 
         /// <summary>
@@ -14,13 +14,13 @@ namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
         /// gubernamental pagada por los servicios realizados por
         ///	personas físicas utilizando plataformas tecnológicas.
         /// </summary>
-        public decimal ImpContrib { get; init; }
+        public decimal ImpContrib { get; set; }
 
         /// <summary>
         /// Atributo requerido para registrar la clave de la entidad
         /// federativa donde se efectúa el pago de la contribución
         ///	gubernamental.
         /// </summary>
-        public string EntidadDondePagaLaContribucion { get; init; }
+        public string EntidadDondePagaLaContribucion { get; set; }
     }
 }

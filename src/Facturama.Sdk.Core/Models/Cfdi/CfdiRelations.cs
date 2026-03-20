@@ -3,12 +3,12 @@
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record CfdiRelations
+    public sealed class CfdiRelations
     {
         [JsonPropertyName("Type")]
-        public string Type { get; init; }
+        public string Type { get; set; }
 
         [JsonPropertyName("Cfdis")]
-        public List<CfdiRelation> Cfdis { get; init; }
+        public List<CfdiRelation> Cfdis { get; set; }
     }
 }

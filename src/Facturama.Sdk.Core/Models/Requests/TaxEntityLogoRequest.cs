@@ -8,8 +8,8 @@ namespace Facturama.Sdk.Core.Models.Requests
 {
     public sealed record TaxEntityLogoRequest
     {
-        public string Image {  get; init; }
+        public string Image {  get; set; }
 
-        public string Type { get; init; }
+        public string Type { get; set; }
     }
 }

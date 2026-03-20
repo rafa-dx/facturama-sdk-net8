@@ -2,34 +2,34 @@
 
 namespace Facturama.Sdk.Core.Models.Common
 {
-    public sealed record Address
+    public sealed class Address
     {
 
         [JsonPropertyName("Street")]
-        public string Street { get; init; }
+        public string Street { get; set; }
 
         [JsonPropertyName("ExteriorNumber")]
-        public string ExteriorNumber { get; init; }
+        public string ExteriorNumber { get; set; }
 
         [JsonPropertyName("InteriorNumber")]
-        public string InteriorNumber { get; init; }
+        public string InteriorNumber { get; set; }
 
         [JsonPropertyName("Neighborhood")]
-        public string Neighborhood { get; init; }
+        public string Neighborhood { get; set; }
 
         [JsonPropertyName("ZipCode")]
-        public string ZipCode { get; init; }
+        public string ZipCode { get; set; }
 
         [JsonPropertyName("Locality")]
-        public string Locality { get; init; }
+        public string Locality { get; set; }
 
         [JsonPropertyName("Municipality")]
-        public string Municipality { get; init; }
+        public string Municipality { get; set; }
 
         [JsonPropertyName("State")]
-        public string State { get; init; }
+        public string State { get; set; }
 
         [JsonPropertyName("Country")]
-        public string Country { get; init; }
+        public string Country { get; set; }
     }
 }

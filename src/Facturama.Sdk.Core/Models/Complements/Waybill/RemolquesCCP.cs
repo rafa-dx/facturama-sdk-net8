@@ -1,8 +1,8 @@
 ﻿namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record RemolquesCCP
+    public sealed class RemolquesCCP
     {
-        public string SubTipoRemCCP { get; init; }
-        public string PlacaCCP { get; init; }
+        public string SubTipoRemCCP { get; set; }
+        public string PlacaCCP { get; set; }
     }
 }

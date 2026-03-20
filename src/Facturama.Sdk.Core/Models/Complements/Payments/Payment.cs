@@ -2,22 +2,22 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payments
 {
-    public sealed record Payment
+    public sealed class Payment
     {
   
-        public string Date { get; init; }
-        public string PaymentForm { get; init; }
-        public string Currency { get; init; }
-        public decimal? ExchangeRate { get; init; }
-        public decimal Amount { get; init; }
-        public string OperationNumber { get; init; }
-        public string RfcIssuerPayerAccount { get; init; }
-        public string ForeignAccountNamePayer { get; init; }
-        public string PayerAccount { get; init; }
-        public string RfcReceiverBeneficiaryAccount { get; init; }
-        public string BeneficiaryAccount { get; init; }
-        public List<RelatedDocument> RelatedDocuments { get; init; }
-        public List<Tax> Taxes { get; init; }
+        public string Date { get; set; }
+        public string PaymentForm { get; set; }
+        public string Currency { get; set; }
+        public decimal? ExchangeRate { get; set; }
+        public decimal Amount { get; set; }
+        public string OperationNumber { get; set; }
+        public string RfcIssuerPayerAccount { get; set; }
+        public string ForeignAccountNamePayer { get; set; }
+        public string PayerAccount { get; set; }
+        public string RfcReceiverBeneficiaryAccount { get; set; }
+        public string BeneficiaryAccount { get; set; }
+        public List<RelatedDocument> RelatedDocuments { get; set; }
+        public List<Tax> Taxes { get; set; }
     }
 
       

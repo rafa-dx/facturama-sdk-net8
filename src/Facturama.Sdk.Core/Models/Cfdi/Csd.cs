@@ -1,12 +1,12 @@
 ﻿
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public sealed record Csd
+    public sealed class Csd
     {
-        public string Rfc { get; init; }
-        public string Certificate { get; init; }
-        public string PrivateKey { get; init; }
-        public string PrivateKeyPassword { get; init; }
+        public string Rfc { get; set; }
+        public string Certificate { get; set; }
+        public string PrivateKey { get; set; }
+        public string PrivateKeyPassword { get; set; }
 
     }
 }

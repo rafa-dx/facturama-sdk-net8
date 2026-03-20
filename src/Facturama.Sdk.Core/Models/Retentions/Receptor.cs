@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
 {
-    public sealed record Receptor
+    public sealed class Receptor
     {
         /// <summary>
 		/// Atributo requerido para expresar la nacionalidad del receptor del documento.
 		/// </summary>		
-		public string Nacionalidad { get; init; }
+		public string Nacionalidad { get; set; }
 
         /// <summary>
         /// Nodo requerido para expresar la información del contribuyente receptor en caso de que sea de nacionalidad mexicana.
         /// </summary>		
-        public Nacional Nacional { get; init; }
+        public Nacional Nacional { get; set; }
 
         /// <summary>
         /// Nodo requerido para expresar la información del contribuyente receptor del documento cuando sea residente en el extranjero.
         /// </summary>		
-        public Extranjero Extranjero { get; init; }
+        public Extranjero Extranjero { get; set; }
     }
 }

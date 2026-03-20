@@ -3,16 +3,16 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Incapacity
+    public sealed class Incapacity
     {
 
         [JsonPropertyName("Days")]
-        public int Days { get; init; }
+        public int Days { get; set; }
 
         [JsonPropertyName("Type")]
-        public string Type { get; init; }
+        public string Type { get; set; }
 
         [JsonPropertyName("Amount")]
-        public decimal Amount { get; init; }
+        public decimal Amount { get; set; }
     }
 }

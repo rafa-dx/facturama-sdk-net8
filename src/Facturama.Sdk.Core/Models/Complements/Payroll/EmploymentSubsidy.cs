@@ -3,9 +3,9 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record EmploymentSubsidy
+    public sealed class EmploymentSubsidy
     {
         [JsonPropertyName("Amount")]
-        public decimal Amount { get; init; }
+        public decimal Amount { get; set; }
     }
 }

@@ -1,15 +1,15 @@
 ﻿namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Carro
+    public sealed class Carro
     {
-        public string TipoCarro { get; init; }
+        public string TipoCarro { get; set; }
 
-        public string MatriculaCarro { get; init; }
+        public string MatriculaCarro { get; set; }
 
-        public string GuiaCarro { get; init; }
+        public string GuiaCarro { get; set; }
 
-        public decimal ToneladasNetasCarro { get; init; }
+        public decimal ToneladasNetasCarro { get; set; }
 
-        public CarroContenedor[] Contenedor { get; init; }
+        public CarroContenedor[] Contenedor { get; set; }
     }
 }

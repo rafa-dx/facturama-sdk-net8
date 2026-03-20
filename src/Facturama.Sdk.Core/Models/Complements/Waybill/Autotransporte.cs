@@ -3,21 +3,21 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Waybill
 {
-    public sealed record Autotransporte
+    public sealed class Autotransporte
     {
         [JsonPropertyName("PermSCT")]
-        public string PermSCT { get; init; }
+        public string PermSCT { get; set; }
 
         [JsonPropertyName("NumPermisoSCT")]
-        public string NumPermisoSCT { get; init; }
+        public string NumPermisoSCT { get; set; }
 
         [JsonPropertyName("Seguros")]
-        public Seguros Seguros { get; init; }
+        public Seguros Seguros { get; set; }
 
         [JsonPropertyName("IdentificacionVehicular")]
-        public IdentificacionVehicular IdentificacionVehicular { get; init; }
+        public IdentificacionVehicular IdentificacionVehicular { get; set; }
 
         [JsonPropertyName("Remolques")]
-        public Remolque[] Remolques { get; init; }
+        public Remolque[] Remolques { get; set; }
     }
 }

@@ -3,60 +3,60 @@
 
 namespace Facturama.Sdk.Core.Models.Complements.Payroll
 {
-    public sealed record Employee
+    public sealed class Employee
     {
         [JsonPropertyName("Outsourcing")]
-        public Outsourcing[] Outsourcing { get; init; }
+        public Outsourcing[] Outsourcing { get; set; }
 
         [JsonPropertyName("Curp")]
-        public string Curp { get; init; }
+        public string Curp { get; set; }
 
         [JsonPropertyName("SocialSecurityNumber")]
-        public string SocialSecurityNumber { get; init; }
+        public string SocialSecurityNumber { get; set; }
 
         [JsonPropertyName("StartDateLaborRelations")]
-        public DateTime? StartDateLaborRelations { get; init; }
+        public DateTime? StartDateLaborRelations { get; set; }
 
         [JsonPropertyName("ContractType")]
-        public string ContractType { get; init; }
+        public string ContractType { get; set; }
 
         [JsonPropertyName("Unionized")]
-        public bool Unionized { get; init; }
+        public bool Unionized { get; set; }
 
         [JsonPropertyName("TypeOfJourney")]
-        public string TypeOfJourney { get; init; }
+        public string TypeOfJourney { get; set; }
 
         [JsonPropertyName("RegimeType")]
-        public string RegimeType { get; init; }
+        public string RegimeType { get; set; }
 
         [JsonPropertyName("EmployeeNumber")]
-        public string EmployeeNumber { get; init; }
+        public string EmployeeNumber { get; set; }
 
         [JsonPropertyName("Department")]
-        public string Department { get; init; }
+        public string Department { get; set; }
 
         [JsonPropertyName("Position")]
-        public string Position { get; init; }
+        public string Position { get; set; }
 
         [JsonPropertyName("PositionRisk")]
-        public string PositionRisk { get; init; }
+        public string PositionRisk { get; set; }
 
         [JsonPropertyName("FrequencyPayment")]
-        public string FrequencyPayment { get; init; }
+        public string FrequencyPayment { get; set; }
 
         [JsonPropertyName("Bank")]
-        public string Bank { get; init; }
+        public string Bank { get; set; }
 
         [JsonPropertyName("BankAccount")]
-        public string BankAccount { get; init; }
+        public string BankAccount { get; set; }
 
         [JsonPropertyName("BaseSalary")]
-        public decimal BaseSalary { get; init; }
+        public decimal BaseSalary { get; set; }
 
         [JsonPropertyName("DailySalary")]
-        public decimal? DailySalary { get; init; }
+        public decimal? DailySalary { get; set; }
 
         [JsonPropertyName("FederalEntityKey")]
-        public string FederalEntityKey { get; init; }
+        public string FederalEntityKey { get; set; }
     }
 }
