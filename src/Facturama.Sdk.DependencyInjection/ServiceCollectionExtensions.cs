@@ -37,6 +37,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
+
     /// <summary>
     /// Agrega los servicios de Facturama al contenedor de DI.
     /// </summary>
@@ -55,12 +56,13 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
+
     private static void RegisterCoreServices(IServiceCollection services)
     {
         // Registrar AuthenticationHeaderHandler
         services.AddTransient<AuthenticationHeaderHandler>();
 
-        // CLIENTE 1: API Web
+        // API Web
         services.AddHttpClient<IApiWebHttpClient, ApiWebHttpClient>("FacturamaApiWeb",
              (sp, client) => ConfigureHttpClient(sp, client, apiLite: false))
              .ConfigurePrimaryHttpMessageHandler(sp => ConfigureHttpHandler(sp))
@@ -71,9 +73,17 @@ public static class ServiceCollectionExtensions
 
         // API LITE
         services.AddHttpClient<IApiLiteHttpClient, ApiLiteHttpClient>("FacturamaApiLite",
-              (sp, client) => ConfigureHttpClient(sp, client, apiLite: true))  // ← flag explícito
+              (sp, client) => ConfigureHttpClient(sp, client, apiLite: true)) 
               .ConfigurePrimaryHttpMessageHandler(sp => ConfigureHttpHandler(sp))
               .AddHttpMessageHandler<AuthenticationHeaderHandler>()
+              .AddPolicyHandler((sp, _) => GetRetryPolicy(sp))
+              .AddPolicyHandler((sp, _) => GetCircuitBreakerPolicy(sp));
+
+        //Retention
+        services.AddHttpClient<IApiRetentionHttpClient, ApiRetentionHttpClient>("FacturamaRetention",
+            (sp, client) => ConfigureHttpClient(sp, client, apiLite : false))
+            .ConfigurePrimaryHttpMessageHandler(sp => ConfigureHttpHandler(sp))
+            .AddHttpMessageHandler<AuthenticationHeaderHandler>()
               .AddPolicyHandler((sp, _) => GetRetryPolicy(sp))
               .AddPolicyHandler((sp, _) => GetCircuitBreakerPolicy(sp));
 
@@ -86,13 +96,18 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ISuscriptionPlanService, SuscriptionPlanService>();
         services.AddScoped<ICatalogService, CatalogService>();
 
+
         // Servicios CFDI
         services.AddScoped<ICfdiService, CfdiService>();
         services.AddScoped<ICfdiLiteService, CfdiLiteService>();
 
+        //Retenciones
+        services.AddScoped<IRetentionService, RetentionService>();
+
         // Cliente principal
         services.AddScoped<IFacturamaClient, FacturamaClient>();
     }
+
 
     /// <summary>
     /// Configura el HttpClient común para todas las APIs.
@@ -119,11 +134,18 @@ public static class ServiceCollectionExtensions
             new MediaTypeWithQualityHeaderValue("application/json"));
 
         client.DefaultRequestHeaders.UserAgent.Clear();
-        var userAgentParts = httpConfig.UserAgent.Split('/');
+
+        // ── UserAgent ─────────────────────────────────────────────
+        // httpConfig.UserAgent viene de SdkVersion: "FacturamaNet8-Sdk/1.0.0"
+        // Resultado final: "FacturamaNet8-Sdk-{usuario}/1.0.0"
+        var uaParts = httpConfig.UserAgent.Split('/', 2);
+        var productName = $"{options.Username}-{uaParts[0]}";   // FacturamaNet8-Sdk-usuario
+        var productVersion = uaParts.Length > 1 ? uaParts[1] : SdkVersion;
+
+        client.DefaultRequestHeaders.UserAgent.Clear();
         client.DefaultRequestHeaders.UserAgent.Add(
-            new ProductInfoHeaderValue(
-                userAgentParts[0],
-                userAgentParts.Length > 1 ? userAgentParts[1] : "1.0.0"));
+            new ProductInfoHeaderValue(productName, productVersion));
+
 
         // Compresión
         if (httpConfig.EnableCompression)
@@ -142,7 +164,16 @@ public static class ServiceCollectionExtensions
                 client.DefaultRequestHeaders.Add(header.Key, header.Value);
             }
         }
+
+
     }
+
+
+    private static readonly string SdkVersion =
+        typeof(ServiceCollectionExtensions).Assembly
+            .GetName().Version?
+            .ToString(3)   
+        ?? "1.0.0";
 
     /// <summary>
     /// Configura el HttpClientHandler.
@@ -225,4 +256,6 @@ public static class ServiceCollectionExtensions
                     logger?.LogInformation("Circuit breaker reset - connection restored");
                 });
     }
+
+
 }

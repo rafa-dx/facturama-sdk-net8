@@ -12,6 +12,8 @@
         ICfdiService Cfdis { get; }
         ICfdiLiteService CfdiLite { get; }
 
+        IRetentionService Retention { get; }
+
 
     }
 }

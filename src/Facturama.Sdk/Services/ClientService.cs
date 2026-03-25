@@ -1,8 +1,7 @@
 ﻿
 using Facturama.Sdk.Core.Abstractions;
 using Facturama.Sdk.Core.Exceptions;
-using Facturama.Sdk.Core.Models.Request; 
-using Facturama.Sdk.Core.Models.Common;
+using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
 
@@ -147,8 +146,8 @@ public sealed class ClientService : IClientService
 
             _logger.LogDebug(
                 "Retrieved {Count} of {Total} clients",
-                response.FilteredRecords,
-                response.TotalRecords);
+                response.recordsFiltered,
+                response.recordsTotal);
 
             return response;
 

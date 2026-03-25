@@ -27,6 +27,8 @@ public sealed class FacturamaClient : IFacturamaClient //, IDisposable
     public ICatalogService Catalogs { get; }
     public ICfdiLiteService CfdiLite { get; }
 
+    public IRetentionService Retention { get; }
+
     public FacturamaClient(
         IClientService clients,
         IProductService products,
@@ -36,6 +38,7 @@ public sealed class FacturamaClient : IFacturamaClient //, IDisposable
         ISuscriptionPlanService suscriptionPlans,
         ICatalogService catalogs,
         ICfdiLiteService cfdiLite,
+        IRetentionService retention,
         ILogger<FacturamaClient> logger)
     {
         Clients = clients;
@@ -46,6 +49,7 @@ public sealed class FacturamaClient : IFacturamaClient //, IDisposable
         SuscriptionPlans = suscriptionPlans;
         Catalogs = catalogs;
         CfdiLite = cfdiLite;
+        Retention = retention;
         _logger = logger;
 
         _logger.LogInformation("FacturamaClient inicializado correctamente");

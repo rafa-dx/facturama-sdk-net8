@@ -1,5 +1,4 @@
-﻿using Facturama.Sdk.Core.Models.Common;
-using Facturama.Sdk.Core.Models.Request;
+﻿using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Responses;
 
 namespace Facturama.Sdk.Core.Abstractions

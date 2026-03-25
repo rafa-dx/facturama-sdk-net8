@@ -65,13 +65,15 @@ namespace Facturama.Sdk.Configuration
                     "Timeout no puede ser mayor a 5 minutos.",
                     nameof(Timeout));
             }
-
+            /*
             if (string.IsNullOrWhiteSpace(UserAgent))
             {
                 throw new ArgumentException(
                     "UserAgent no puede estar vacío.",
                     nameof(UserAgent));
             }
+            */
+            
 
             if (MaxConnectionsPerServer < 1)
             {

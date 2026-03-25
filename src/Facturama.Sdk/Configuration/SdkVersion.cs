@@ -20,7 +20,7 @@ namespace Facturama.Sdk.Configuration
         /// <summary>
         /// User-Agent por defecto.
         /// </summary>
-        public static string UserAgent { get; }
+        public static string UserAgent { get;  }
 
         static SdkVersion()
         {
@@ -31,7 +31,7 @@ namespace Facturama.Sdk.Configuration
             ? $"{version.Major}.{version.Minor}.{version.Build}"
             : "1.0.0";
 
-            UserAgent = $"FacturamaSDK/{version}";
+            UserAgent = $"Facturama-SDK-NET8/{version}";
         }
     }
 }

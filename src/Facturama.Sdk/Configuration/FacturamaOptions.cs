@@ -47,12 +47,6 @@ namespace Facturama.Sdk.Configuration
         public bool EnableLogging { get; set; } = true;
 
         /// <summary>
-        /// Habilita compresión de contenido (gzip) en las peticiones.
-        /// Default: true.
-        /// </summary>
-        public bool EnableCompression { get; set; } = true;
-
-        /// <summary>
         /// Obtiene la URL base de la API según el ambiente configurado.
         /// </summary>
         public string BaseUrl => Environment.GetBaseUrl();

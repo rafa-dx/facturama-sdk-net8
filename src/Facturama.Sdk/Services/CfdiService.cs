@@ -158,13 +158,13 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
         /// <inheritdoc/>
         public async Task<CfdiDownloadResponse> DownloadFileAsync(
             string fileType,
-            string cfdiType,
+            string format,
             string cfdiId,
             CancellationToken cancellationToken = default)
         {
 
             ArgumentException.ThrowIfNullOrWhiteSpace(fileType);
-            ArgumentException.ThrowIfNullOrWhiteSpace(cfdiType);
+            ArgumentException.ThrowIfNullOrWhiteSpace(format);
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
 
             _logger.LogInformation(
@@ -172,7 +172,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                fileType,
                cfdiId);
 
-            var endpoint = $"cfdi/{fileType}/{cfdiType}/{cfdiId}";
+            var endpoint = $"cfdi/{fileType}/{format}/{cfdiId}";
             var response = await _httpClient.GetAsync<CfdiDownloadResponse>(
                 endpoint,
                 null,
