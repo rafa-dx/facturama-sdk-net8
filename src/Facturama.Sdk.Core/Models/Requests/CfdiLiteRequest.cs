@@ -3,7 +3,7 @@
 
 namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record CfdiLiteRequest : CfdiBase
+    public sealed class CfdiLiteRequest : CfdiBase
     {
         public string LogoUrl { get; set; }
 

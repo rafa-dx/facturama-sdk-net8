@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
+namespace Facturama.Sdk.Core.Models.Retentions.Complements
 {
     public sealed class ContribucionGubernamental
     {

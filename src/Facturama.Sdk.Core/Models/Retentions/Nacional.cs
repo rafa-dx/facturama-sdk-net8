@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
+namespace Facturama.Sdk.Core.Models.Retentions
 {
     public sealed class Nacional
     {
@@ -12,7 +12,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
         /// Atributo requerido para la clave del Registro Federal de
         /// Contribuyentes correspondiente al contribuyente receptor	del documento.
         /// </summary>		
-        public string RfcRecep { get; set; }
+        public string RFCRecep { get; set; }
 
         /// <summary>
         /// Atributo opcional para el nombre, denominación o razón social del contribuyente receptor del documento.

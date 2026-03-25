@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
+namespace Facturama.Sdk.Core.Models.Retentions
 {
     public sealed class Emisor
     {
@@ -13,7 +13,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
         /// Federal de Contribuyentes correspondiente al
         ///	contribuyente emisor del documento de retención e información de pagos, sin guiones o espacios.
         /// </summary>		
-        public string RfcEmisor { get; set; }
+        public string RFCEmisor { get; set; }
 
         /// <summary>
         /// Atributo opcional para el nombre, denominación o razón

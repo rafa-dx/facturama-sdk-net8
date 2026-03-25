@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
+namespace Facturama.Sdk.Core.Models.Retentions
 {
     public sealed class Periodo
     {
@@ -12,16 +12,16 @@ namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
         /// <summary>
         /// Atributo requerido para la expresión del mes inicial del periodo de la retención e información de pagos.
         /// </summary>		
-        public int MesIni { get; set; }
+        public string MesIni { get; set; }
 
         /// <summary>
         /// Atributo requerido para la expresión del mes final del periodo de la retención e información de pagos.
         /// </summary>		
-        public int MesFin { get; set; }
+        public string MesFin { get; set; }
 
         /// <summary>
         /// Atributo requerido para la expresión del ejercicio fiscal (año).
         /// </summary>
-        public int Ejerc { get; set; }
+        public string Ejerc { get; set; }
     }
 }

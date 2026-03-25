@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 
-namespace Facturama.Sdk.Core.Models.Common
+namespace Facturama.Sdk.Core.Models.Responses
 {
     public sealed class  PaginatedResponse<T>
     {
@@ -10,12 +10,12 @@ namespace Facturama.Sdk.Core.Models.Common
 
 
         /// <summary>Total de registros sin filtros</summary>
-        [JsonPropertyName("classsTotal")]
-        public required int Totalclasss { get; set; }
+        [JsonPropertyName("recordsTotal")]
+        public required int recordsTotal { get; set; }
 
         /// <summary>Total de registros después de aplicar filtros</summary>
-        [JsonPropertyName("classsFiltered")]
-        public required int Filteredclasss { get; set; }
+        [JsonPropertyName("recordsFiltered")]
+        public required int recordsFiltered { get; set; }
 
         /// <summary>Índice inicial solicitado</summary>
         //public required int Start { get; set; }
