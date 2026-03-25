@@ -13,7 +13,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         private readonly IFacturamaClient _facturama;
 
         public string Name => "7";
-        public string Description => "Ejemplo de creación de CFDI";
+        public string Description => "CRUD  CFDI";
 
         public CfdiExample(IFacturamaClient facturama)
         {

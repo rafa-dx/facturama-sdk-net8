@@ -33,7 +33,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                 await GetClientByIdExample();
                 await DeleteClientExample();
 
-
             }
             catch (FacturamaException ex)
             {
@@ -45,9 +44,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         public async Task ListClientsExample()
         {
 
-
             Console.WriteLine("Listando solo los primeros 100 clientes...");
-
 
             var clients = await _facturama.Clients.ListAsync();
 
@@ -55,9 +52,8 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             foreach (var client in clients)
             {
-                System.Console.WriteLine($"  - [{client.Id}] {client.Name} ({client.Rfc}) - {client.Email}");
+                Console.WriteLine($"  - [{client.Id}] {client.Name} ({client.Rfc}) - {client.Email}");
             }
-            Console.ReadLine();
 
         }
 
@@ -92,8 +88,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var request = await _facturama.Clients.CreateAsync(newClientRequest);
 
             ConsoleHelper.Print(request);
-            Console.ReadLine();
-
 
         }
 
@@ -109,7 +103,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         public async Task UpdateClientExample()
         {
             Console.WriteLine("\nActualizando un cliente...");
-            var updateClientRequest = new Facturama.Sdk.Core.Models.Request.ClientRequest
+            var updateClientRequest = new Core.Models.Request.ClientRequest
             {
                 Id = "J_uWmWVdg-DJLoR1noHAbQ2",
                 Rfc = "FUNK671228PH6",
@@ -137,7 +131,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var request = await _facturama.Clients.UpdateAsync(updateClientRequest.Id, updateClientRequest);
 
             ConsoleHelper.Print(request);
-            Console.ReadLine();
         }
 
         public async Task FindClientByRfcExample()
@@ -176,7 +169,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"No se encontró un cliente con ID {clientId}");
             }
-            Console.ReadLine();
         }
     }
  }

@@ -9,6 +9,7 @@ using Facturama.Sdk.DependencyInjection;
 using Facturama.Sdk.Samples.ConsoleApp.WebApiExamples;
 using Serilog;
 using Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples;
+using Facturama.Sdk.Samples.ConsoleApp.RetentionExample;
 
 //Configurar Serilog
 Log.Logger = new LoggerConfiguration()
@@ -45,6 +46,7 @@ try {
             services.AddTransient<IExample, CatalogExample>();
             services.AddTransient<IExample, CfdiExample>();
             services.AddTransient<IExample, CfdiLIsteExample>();
+            services.AddTransient<IExample, RetentionExample>();
         })
         .UseSerilog()
         .Build();

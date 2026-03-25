@@ -96,7 +96,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             var productsPage = await _facturama.Products.ListPaginatedAsync(start: 0, length: 10);
 
-            Console.WriteLine($"Total de productos: {productsPage.TotalRecords}");
+            Console.WriteLine($"Total de productos: {productsPage.recordsFiltered}");
 
             ConsoleHelper.Print(productsPage);
             Console.ReadLine();

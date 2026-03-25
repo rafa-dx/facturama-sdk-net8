@@ -19,7 +19,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples
 
         public string Name => "8";
 
-        public string Description => "Ejemplo de creación de CFDI en APi Multiemisor.";
+        public string Description => "CRUD APi Multiemisor.";
 
         public CfdiLIsteExample(IFacturamaClient facturama)
         {
@@ -31,14 +31,14 @@ namespace Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples
             Console.WriteLine("\n--- Ejemplo de creación de CFDI en APi Multiemisor ---");
             try
             {
-                await UploadCsdApiLiteExample();
-                await CreateCfdiExample();
-                await ConsultExample();
-                await ListCfdiExample();
-                await StatusSatExample();
-                await DowndloadPdfExample();
-                await CancelExample();
-                await SendEmailExample();
+                //await UploadCsdApiLiteExample();
+                //await CreateCfdiExample();
+                //await ConsultExample();
+                //await ListCfdiExample();
+                //await StatusSatExample();
+                //await DowndloadPdfExample();
+                //await CancelExample();
+                //await SendEmailExample();
             }
             catch (Exception ex)
             {
@@ -57,6 +57,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples
                 PrivateKeyPassword = "12345678a",
             };
             var response = _facturama.CfdiLite.UploadCsdAsync(csdApiLite);
+            ConsoleHelper.Print(response);
         }
 
         public async Task CreateCfdiExample() 
