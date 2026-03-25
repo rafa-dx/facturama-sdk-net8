@@ -3,7 +3,7 @@
 
 namespace Facturama.Sdk.Core.Models.Request
 {
-    public sealed record CfdiRequest : CfdiBase
+    public sealed class CfdiRequest : CfdiBase
     {
 
     }

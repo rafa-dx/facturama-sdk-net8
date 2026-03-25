@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
+namespace Facturama.Sdk.Core.Models.Retentions.Complements
 {
     public sealed class ImpuestosTrasladadosdelServicio
     {
@@ -25,15 +25,13 @@ namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions.Complements
         ///// Atributo requerido para señalar la clave del tipo de factor que
         ///// se aplica a la base del impuesto.
         ///// </summary>
-        //[Required]
-        //[RegularExpression("Tasa|Cuota")]
-        //public string TipoFactor { get; set; }
+        public string TipoFactor { get; set; }
 
         /// <summary>
         /// Atributo requerido para señalar el valor de la tasa o cuota del
         /// impuesto que se traslada para el presente servicio.
         /// </summary>
-        public string TasaCuota { get; set; }
+        public decimal TasaCuota { get; set; }
 
         /// <summary>
         /// Atributo requerido para señalar el importe del impuesto

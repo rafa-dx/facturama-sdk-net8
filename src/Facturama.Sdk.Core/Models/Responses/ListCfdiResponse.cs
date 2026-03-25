@@ -23,5 +23,6 @@ namespace Facturama.Sdk.Core.Models.Responses
         public string PaymentMethod { get; init; }
         public string OrderNumber { get; init; }
         public string Status { get; init; }
+        public bool EmailSent { get; init; }
     }
 }

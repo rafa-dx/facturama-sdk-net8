@@ -4,29 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FacturamaAPI.src.Facturama.Sdk.Core.Models.Retentions
+namespace Facturama.Sdk.Core.Models.Retentions
 {
     public sealed class Totales
     {
         /// <summary>
 		/// Atributo requerido para expresar el total del monto de la operación que se relaciona en el comprobante.
 		/// </summary>		
-		public decimal MontoTotOperacion { get; set; }
+		public decimal montoTotOperacion { get; set; }
 
         /// <summary>
         /// Atributo requerido para expresar el total del monto gravado de la operación que se relaciona en el comprobante.
         /// </summary>
-        public decimal MontoTotGrav { get; set; }
+        public decimal montoTotGrav { get; set; }
 
         /// <summary>
         /// Atributo requerido para expresar el total del monto exento de la operación que se relaciona en el comprobante.
         /// </summary>
-        public decimal MontoTotExent { get; set; }
+        public decimal montoTotExent { get; set; }
 
         /// <summary>
         /// Atributo requerido para expresar el monto total de las retenciones.Sumatoria de los montos de retención del nodo ImpRetenidos.
         /// </summary>
-        public decimal MontoTotRet { get; set; }
+        public decimal montoTotRet { get; set; }
 
         /// <summary>
         /// Nodo opcional para expresar el total de los impuestos retenidos que se desprenden de

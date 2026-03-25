@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Facturama.Sdk.Core.Models.Cfdi
 {
-    public abstract class CfdiBase
+    public class CfdiBase
     {
         [JsonPropertyName("NameId")]
         public string NameId { get; set; }

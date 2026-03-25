@@ -1,6 +1,6 @@
 ﻿namespace Facturama.Sdk.Core.Models.Common
 {
-    public abstract class CatalogBase
+    public abstract record CatalogBase
     {
         public string Name { get; set; }
 
