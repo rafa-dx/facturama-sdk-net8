@@ -1,5 +1,6 @@
 ﻿using Facturama.Sdk.Core.Enums;
 using Facturama.Sdk.Core.Models.Complements;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 
@@ -11,6 +12,7 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string NameId { get; set; }
 
         [JsonPropertyName("Folio")]
+        [Required]
         public string Folio { get; set; }
 
         [JsonPropertyName("Serie")]
@@ -32,7 +34,7 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string ExpeditionPlace { get; set; }
 
         [JsonPropertyName("Date")]
-        //public DateTime? Date { get; set; }
+        [Required]
         public string Date { get; set; }
 
         [JsonPropertyName("PaymentConditions")]

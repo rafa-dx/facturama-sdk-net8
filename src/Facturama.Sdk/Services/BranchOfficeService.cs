@@ -1,5 +1,4 @@
 ﻿using Facturama.Sdk.Core.Abstractions;
-using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
@@ -33,7 +32,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Creating a new branch office with name: {BranchOfficeName}",
             request.Name);
 
@@ -43,9 +42,11 @@ public sealed class BranchOfficeService : IBranchOfficeService
             request,
             null,
             cancellationToken);
+
         _logger.LogInformation(
             "Successfully created branch office with name: {BranchOfficeName}",
             request.Name);
+
         return response;
 
     }
@@ -55,7 +56,8 @@ public sealed class BranchOfficeService : IBranchOfficeService
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(branchOfficeId);
-        _logger.LogInformation(
+
+        _logger.LogDebug(
             "Retrieving branch office with ID: {BranchOfficeId}",
             branchOfficeId);
 
@@ -67,6 +69,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
         _logger.LogInformation(
             "Successfully retrieved branch office with ID: {BranchOfficeId}",
             branchOfficeId);
+
         return response;
 
     }
@@ -74,13 +77,15 @@ public sealed class BranchOfficeService : IBranchOfficeService
     public async Task<IReadOnlyList<BranchOfficeResponse>> ListAsync(
         CancellationToken cancellationToken = default)
     {
-        _logger.LogInformation("Retrieving all branch offices");
+        _logger.LogDebug("Retrieving all branch offices");
 
         var response = await _httpClient.GetAsync<List<BranchOfficeResponse>>(
             BaseEndpoint,
             queryParams: null,
             cancellationToken);
+
         _logger.LogInformation("Successfully retrieved all branch offices");
+
         return response.AsReadOnly();
 
     }
@@ -91,7 +96,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
     {
         ArgumentNullException.ThrowIfNull(branchOfficeId);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Deleting branch office with ID: {BranchOfficeId}",
             branchOfficeId);
 
@@ -114,7 +119,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
         ArgumentException.ThrowIfNullOrWhiteSpace(branchOfficeId);
         ArgumentNullException.ThrowIfNull(branchOfficeRequest);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Updating branch office with ID: {BranchOfficeId}",
             branchOfficeId);
 
@@ -128,6 +133,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
         _logger.LogInformation(
             "Successfully updated branch office with ID: {BranchOfficeId}",
             branchOfficeId);
+
         return response;
 
     }

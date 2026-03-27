@@ -35,13 +35,16 @@ namespace Facturama.Sdk.Services
             {
                 throw new ArgumentException("El código postal debe ser una cadena de 5 dígitos.", nameof(keyword));
             }
-            var queryParameters = new Dictionary<string, string>
+
+            var queryParameters = new Dictionary<string, string?>
             {
                 { "keyword", keyword }
             };
-            _logger.LogInformation(
+
+            _logger.LogDebug(
                 "Fetching information for postal code: {keyword}",
                 keyword);
+
             return _httpClient.GetAsync<IReadOnlyList<PostalCodesCatalog>>(
                 $"{BaseEndpoint}/postalcodes",
                     queryParameters,
@@ -51,7 +54,8 @@ namespace Facturama.Sdk.Services
         public Task<IReadOnlyList<RelationType>> GetRelationTypesAsync(
             CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation("Fetching relation types catalog...");
+            _logger.LogDebug("Fetching relation types catalog...");
+
             return _httpClient.GetAsync<IReadOnlyList<RelationType>>(
                 $"{BaseEndpoint}/relationtypes",
                 null,
@@ -61,7 +65,8 @@ namespace Facturama.Sdk.Services
         public Task<IReadOnlyList<CountriesCatalog>> GetCountriesAsync(
             CancellationToken cancellation = default)
         {
-            _logger.LogInformation("Fetching continent catalog...");
+            _logger.LogDebug("Fetching continent catalog...");
+
             return _httpClient.GetAsync<IReadOnlyList<CountriesCatalog>>(
                 $"{BaseEndpoint}/countries",
                 null,
@@ -77,13 +82,14 @@ namespace Facturama.Sdk.Services
             {
                 throw new ArgumentException("El código del estado no puede estar vacío.", nameof(keyword));
             }
-            var queryParameters = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string?>
             {
                 { "countryCode", keyword }
             };
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Fetching states catalog for code: {keyword}",
                 keyword);
+
             return _httpClient.GetAsync<IReadOnlyList<State>>(
                 $"{BaseEndpoint}/states",
                     queryParameters,
@@ -98,13 +104,14 @@ namespace Facturama.Sdk.Services
             {
                 throw new ArgumentException("El código del estado no puede estar vacío.", nameof(keyword));
             }
-            var queryParameters = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string?>
             {
                 { "stateCode", keyword }
             };
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Fetching municipalities catalog for code: {keyword}",
                 keyword);
+
             return _httpClient.GetAsync<IReadOnlyList<MunicipalitiesCatalogs>>(
                 $"{BaseEndpoint}/municipalities",
                     queryParameters,
@@ -119,13 +126,14 @@ namespace Facturama.Sdk.Services
             {
                 throw new ArgumentException("El código del municipio no puede estar vacío.", nameof(keyword));
             }
-            var queryParameters = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string?>
             {
                 { "municipalityCode", keyword }
             };
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Fetching localities catalog for code: {keyword}",
                 keyword);
+
             return _httpClient.GetAsync<IReadOnlyList<LocalitiesCatalogs>>(
                 $"{BaseEndpoint}/localities",
                     queryParameters,
@@ -140,13 +148,14 @@ namespace Facturama.Sdk.Services
             {
                 throw new ArgumentException("El código de la localidad no puede estar vacío.", nameof(keyword));
             }
-            var queryParameters = new Dictionary<string, string>
+            var queryParameters = new Dictionary<string, string?>
             {
                 { "localityCode", keyword }
             };
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Fetching neighborhoods catalog for code: {keyword}",
                 keyword);
+
             return _httpClient.GetAsync<IReadOnlyList<Neighborhood>>(
                 $"{BaseEndpoint}/neighborhoods",
                     queryParameters,
@@ -156,7 +165,8 @@ namespace Facturama.Sdk.Services
         public Task<IReadOnlyList<CfdiUse>> GetCfdiUsesAsync(
             CancellationToken cancellation = default)
         {
-            _logger.LogInformation("Fetching CFDI uses catalog...");
+            _logger.LogDebug("Fetching CFDI uses catalog...");
+
             return _httpClient.GetAsync<IReadOnlyList<CfdiUse>>(
                 $"{BaseEndpoint}/cfdiuses",
                 null,
@@ -168,7 +178,7 @@ namespace Facturama.Sdk.Services
             CancellationToken cancellation = default)
         {
 
-            var queryParameters = new Dictionary<string, string>();
+            var queryParameters = new Dictionary<string, string?>();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 queryParameters["keyword"] = keyword;
@@ -185,7 +195,7 @@ namespace Facturama.Sdk.Services
             string? keyword = null,
             CancellationToken cancellation = default)
         {
-            var queryParameters = new Dictionary<string, string>();
+            var queryParameters = new Dictionary<string, string?>();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 queryParameters["keyword"] = keyword;
@@ -212,7 +222,7 @@ namespace Facturama.Sdk.Services
             string? keyword = null,
             CancellationToken cancellation = default)
         {
-            var queryParameters = new Dictionary<string, string>();
+            var queryParameters = new Dictionary<string, string?>();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 queryParameters["keyword"] = keyword;
@@ -271,7 +281,7 @@ namespace Facturama.Sdk.Services
             string? keyword = null,
             CancellationToken cancellation = default)
         {
-            var queryParameters = new Dictionary<string, string>();
+            var queryParameters = new Dictionary<string, string?>();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 queryParameters["rfc"] = keyword;

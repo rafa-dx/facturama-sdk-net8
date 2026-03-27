@@ -7,6 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Facturama.Sdk.Services;
 
+/// <summary>
+/// Implementacion del servicio de gestion de productos de facturama
+/// </summary>
 public sealed class ProductService : IProductService
 {
     private const string BaseEndpoint = "Product";
@@ -38,7 +41,7 @@ public sealed class ProductService : IProductService
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Creating product with name: {ProductName}",
             request.Name);
 
@@ -64,7 +67,7 @@ public sealed class ProductService : IProductService
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(productId);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Retrieving product with ID: {ProductId}",
             productId);
 
@@ -79,20 +82,25 @@ public sealed class ProductService : IProductService
             productId);
 
         return response;
-
-
     }
 
     /// <inheritdoc/>
     public async Task<IReadOnlyList<ProductResponse>> ListAsync(
-            CancellationToken cancellation = default)
+        string? keyword = null,
+        CancellationToken cancellation = default)
     {
-        _logger.LogInformation("Listing products");
+        _logger.LogDebug("Listing products");
+
+        var queryParams = string.IsNullOrEmpty(keyword) ? null :
+            new Dictionary<string, string?>
+            {
+                ["keyword"] = keyword
+            };
 
 
         var response = await _httpClient.GetAsync<IReadOnlyList<ProductResponse>>(
             BaseEndpoint,
-            queryParams: null,
+            queryParams,
             cancellation);
 
         _logger.LogInformation(
@@ -108,20 +116,21 @@ public sealed class ProductService : IProductService
 
     public async Task<PaginatedResponse<ProductResponse>> ListPaginatedAsync(
         int start = 0,
-        int length = 50,
+        int length = 100,
         string? search = null,
             CancellationToken cancellation = default)
     {
         ValidatePaginationParameters(
             start,
             length);
+            
         _logger.LogDebug("Retrieving clients with pagination: start={Start}, length={Length}, search={Search}",
-                         start,
-                         length,
-                         search ?? "(none)");
+            start,
+            length,
+            search ?? "(none)");
 
 
-        var queryParams = new Dictionary<string, string>
+        var queryParams = new Dictionary<string, string?>
         {
             ["start"] = start.ToString(),
             ["length"] = length.ToString()
@@ -131,19 +140,21 @@ public sealed class ProductService : IProductService
         {
             queryParams["search"] = search;
         }
+
         var response = await _httpClient.GetAsync<PaginatedResponse<ProductResponse>>(
             BaseEndpointPaginated,
             queryParams,
             cancellation);
 
-        _logger.LogDebug("Retrieved {Count} of {Total} products",
-                         response.recordsFiltered,
-                         response.recordsTotal);
+        _logger.LogInformation("Retrieved {Count} of {Total} products",
+            response.recordsFiltered,
+            response.recordsTotal);
+
         return response;
 
     }
 
-
+    /// <inheritdoc/>
     public async Task<ProductResponse> UpdateAsync(
         string productId,
         ProductRequest request,
@@ -152,7 +163,7 @@ public sealed class ProductService : IProductService
         ArgumentException.ThrowIfNullOrWhiteSpace(productId);
         ArgumentNullException.ThrowIfNull(request);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Updating product with ID: {ProductId}",
             productId);
 
@@ -168,17 +179,16 @@ public sealed class ProductService : IProductService
             productId);
 
         return response;
-
-
     }
 
+    /// <inheritdoc/>
     public async Task DeleteAsync(
         string productId,
         CancellationToken cancelToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(productId);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Deleting product with ID: {ProductId}",
             productId);
 
@@ -187,6 +197,7 @@ public sealed class ProductService : IProductService
         await _httpClient.DeleteAsync(
             endpoint,
             cancelToken);
+
         _logger.LogInformation(
             "Product deleted successfully with ID: {ProductId}",
             productId);

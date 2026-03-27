@@ -1,17 +1,11 @@
 ﻿using Facturama.Sdk.Core.Abstractions;
-using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Filters;
 using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Requests;
 using Facturama.Sdk.Core.Models.Responses;
 using Facturama.Sdk.Core.Utilities;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
+
 
 namespace Facturama.Sdk.Services
 {
@@ -86,7 +80,7 @@ namespace Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug(
+            _logger.LogInformation(
                 "CFDI retrieved successfully: {CfdiId}",
                 cfdiId);
 
@@ -114,7 +108,7 @@ namespace Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug("Retrieved {Count} CFDIs", response.Count);
+            _logger.LogInformation("Retrieved {Count} CFDIs", response.Count);
 
             return response.AsReadOnly();
 
@@ -140,7 +134,7 @@ namespace Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug(
+            _logger.LogInformation(
                "Status retrieved for UUID: {Uuid} - Status: {Status}",
                filter.Uuid,
                response.Status);

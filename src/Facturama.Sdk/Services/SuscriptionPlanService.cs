@@ -1,5 +1,4 @@
 ﻿using Facturama.Sdk.Core.Abstractions;
-using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
 
@@ -22,14 +21,16 @@ namespace Facturama.Sdk.Services
         public async Task<SuscriptionPlanResponse> GetAsync(
             CancellationToken cancellationToken = default)
         {
-            _logger.LogInformation("Getting subscription plan information.");
+            _logger.LogDebug("Getting subscription plan information.");
 
 
             var response = await _httpClient.GetAsync<SuscriptionPlanResponse>(
                 BaseEndpoint,
-                 queryParams: null,
+                queryParams: null,
                 cancellationToken).ConfigureAwait(false);
+
             _logger.LogInformation("Subscription plan information retrieved successfully.");
+
             return response;
 
         }

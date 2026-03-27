@@ -27,18 +27,6 @@ namespace Facturama.Sdk.Configuration
         /// </summary>
         public FacturamaEnvironment Environment { get; set; } = FacturamaEnvironment.Sandbox;
 
-        /// <summary>
-        /// Timeout para las solicitudes HTTP en segundos.
-        /// Default: 30 segundos.
-        ///  </summary>
-        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30);
-
-        /// <summary>
-        /// Numero maximo de reintentos para solicitudes fallidas.
-        /// Default: 3 reintentos.
-        /// </summary>  
-        [Range(0, 10, ErrorMessage = "MaxRetries debe estar entre 0 y 10.")]
-        public int MaxRetries { get; set; } = 3;
 
         /// <summary>
         /// Habilita el logging de peticiones y respuestas.
@@ -83,26 +71,6 @@ namespace Facturama.Sdk.Configuration
             if (string.IsNullOrWhiteSpace(Password))
             {
                 throw new ValidationException("El Password es requerido y no puede estar vacío.");
-            }
-
-            if (Timeout <= TimeSpan.Zero)
-            {
-                throw new ValidationException("El Timeout debe ser mayor a cero.");
-            }
-
-            if (Timeout > TimeSpan.FromMinutes(5))
-            {
-                throw new ValidationException("El Timeout no puede ser mayor a 5 minutos.");
-            }
-
-            if (MaxRetries < 0)
-            {
-                throw new ValidationException("MaxRetries no puede ser negativo.");
-            }
-
-            if (MaxRetries > 10)
-            {
-                throw new ValidationException("MaxRetries no puede ser mayor a 10.");
             }
 
             if (!Enum.IsDefined(typeof(FacturamaEnvironment), Environment))

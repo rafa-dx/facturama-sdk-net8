@@ -17,6 +17,7 @@ namespace Facturama.Sdk.Core.Abstractions
 
         // READ (lista)
         Task<IReadOnlyList<ProductResponse>> ListAsync(
+            string? keyword = null,
             CancellationToken cancellationToken = default);
 
         // READ (lista con paginación)

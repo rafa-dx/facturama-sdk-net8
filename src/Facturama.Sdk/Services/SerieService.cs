@@ -3,11 +3,7 @@ using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Request;
 using Facturama.Sdk.Core.Models.Responses;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Facturama.Sdk.Services
 {
@@ -36,7 +32,7 @@ namespace Facturama.Sdk.Services
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            _logger.LogInformation("Creating a new serie with name: {Name}", request.Name);
+            _logger.LogDebug("Creating a new serie with name: {Name}", request.Name);
 
 
             var response = await _httpClient.PostAsync<SerieResponse>(
@@ -44,6 +40,7 @@ namespace Facturama.Sdk.Services
                 request,
                 null,
                 cancellation);
+
             _logger.LogInformation("Successfully created serie with Name {Name}", response.Name);
             return response;
 
@@ -54,12 +51,13 @@ namespace Facturama.Sdk.Services
             string Id,
             CancellationToken cancellation = default)
         {
-            _logger.LogInformation("Retrieving list of series");
+            _logger.LogDebug("Retrieving list of series");
 
             var response = await _httpClient.GetAsync<IReadOnlyList<SerieResponse>>(
                 $"{BaseEndpoint}/{Id}",
                 queryParams: null,
                 cancellation);
+
             _logger.LogInformation("Successfully retrieved list of series. Count: {Count}", response.Count);
             return response;
 
@@ -68,12 +66,14 @@ namespace Facturama.Sdk.Services
         public async Task<SerieResponse> DeleteSerieAsync(string Id, CancellationToken cancellation = default)
         {
             ArgumentNullException.ThrowIfNull(Id);
-            _logger.LogInformation("Deleting serie with ID: {Id}", Id);
+
+            _logger.LogDebug("Deleting serie with ID: {Id}", Id);
 
             var response = await _httpClient.DeleteAndResponseAsync<SerieResponse>(
                 $"{BaseEndpoint}/{Id}",
                 null,
                 cancellation);
+
             _logger.LogInformation("Successfully deleted serie with ID: {Id}", Id);
             return response;
 

@@ -14,7 +14,7 @@ namespace Facturama.Sdk;
 /// Cliente principal para interactuar con la API de Facturama.
 /// Punto de entrada para todos los servicios del SDK.
 /// </summary>
-public sealed class FacturamaClient : IFacturamaClient //, IDisposable
+public sealed class FacturamaClient : IFacturamaClient 
 {
     private readonly ILogger<FacturamaClient> _logger;
 

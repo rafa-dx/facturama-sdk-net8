@@ -41,7 +41,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
         {
             ArgumentNullException.ThrowIfNull(request, nameof(request));
 
-            _logger.LogInformation(
+            _logger.LogDebug(
             "Creating CFDI 4.0 for receiver: {ReceiverRfc}",
             request.Receiver?.Rfc ?? "N/A");
 
@@ -88,7 +88,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug(
+            _logger.LogInformation(
                 "CFDI retrieved successfully: {CfdiId}",
                 cfdiId);
 
@@ -116,7 +116,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug("Retrieved {Count} CFDIs", response.Count);
+            _logger.LogInformation("Retrieved {Count} CFDIs", response.Count);
 
             return response.AsReadOnly();
 
@@ -144,7 +144,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
                 queryParams,
                 cancellationToken);
 
-            _logger.LogDebug(
+            _logger.LogInformation(
                "Status retrieved for UUID: {Uuid} - Status: {Status}",
                filter.Uuid,
                response.Status);
@@ -167,7 +167,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             ArgumentException.ThrowIfNullOrWhiteSpace(format);
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
 
-            _logger.LogInformation(
+            _logger.LogDebug(
                "Downloading CFDI file. Type: {FileType}, CFDI: {CfdiId}",
                fileType,
                cfdiId);
@@ -200,7 +200,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiType);
 
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Cancelling CFDI: {CfdiId}, Type: {CfdiType}, Motive: {Motive}",
                 cfdiId,
                 cfdiType,
@@ -240,7 +240,7 @@ namespace FacturamaAPI.src.Facturama.Sdk.Services
             ArgumentException.ThrowIfNullOrWhiteSpace(email);
             ArgumentException.ThrowIfNullOrWhiteSpace(cfdiType);
 
-            _logger.LogInformation(
+            _logger.LogDebug(
                 "Sending CFDI {CfdiId} to {Email}",
                 cfdiId,
                 email);

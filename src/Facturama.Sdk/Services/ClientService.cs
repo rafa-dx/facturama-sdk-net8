@@ -40,24 +40,23 @@ public sealed class ClientService : IClientService
         ArgumentNullException.ThrowIfNull(request);
         ValidateCreateRequest(request);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Creating client with RFC: {Rfc}",
             request.Rfc);
 
- 
-            var response = await _httpClient.PostAsync<ClientResponse>(
-                BaseEndpoint,
-                request,
-                null,
-                cancellationToken);
 
-            _logger.LogInformation(
-                "Client created successfully with ID: {ClientId}, RFC: {Rfc}",
-                response.Id,
-                response.Rfc);
+        var response = await _httpClient.PostAsync<ClientResponse>(
+            BaseEndpoint,
+            request,
+            null,
+            cancellationToken);
 
-            return response;
+        _logger.LogInformation(
+            "Client created successfully with ID: {ClientId}, RFC: {Rfc}",
+            response.Id,
+            response.Rfc);
 
+        return response;
     }
 
     /// <inheritdoc/>
@@ -69,53 +68,53 @@ public sealed class ClientService : IClientService
 
         _logger.LogDebug("Retrieving client with ID: {ClientId}", clientId);
 
-       
-            var endpoint = $"{BaseEndpoint}/{clientId}";
-            var response = await _httpClient.GetAsync<ClientResponse>(
-                endpoint,
-                queryParams: null,
-                cancellationToken);
 
-            _logger.LogDebug(
-                "Client retrieved successfully: {ClientId} - {Rfc}",
-                response.Id,
-                response.Rfc);
+        var endpoint = $"{BaseEndpoint}/{clientId}";
+        var response = await _httpClient.GetAsync<ClientResponse>(
+            endpoint,
+            queryParams: null,
+            cancellationToken);
 
-            return response;
-        
+        _logger.LogInformation(
+            "Client retrieved successfully: {ClientId} - {Rfc}",
+            response.Id,
+            response.Rfc);
+
+        return response;
+
 
     }
 
-    
+
     /// <inheritdoc/>
     public async Task<IReadOnlyList<ClientResponse>> ListAsync(
         string? rfc = null,
     CancellationToken cancellationToken = default)
     {
-        
+
         _logger.LogDebug("Retrieving all clients (no pagination)");
 
 
-            var queryParams = string.IsNullOrEmpty(rfc) ? null :
-                new Dictionary<string, string?>
+        var queryParams = string.IsNullOrEmpty(rfc) ? null :
+            new Dictionary<string, string?>
             {
                 ["keyword"] = rfc
             };
-            var response = await _httpClient.GetAsync<List<ClientResponse>>(
-                BaseEndpoint,
-                queryParams,
-                cancellationToken);
+        var response = await _httpClient.GetAsync<List<ClientResponse>>(
+            BaseEndpoint,
+            queryParams,
+            cancellationToken);
 
-            _logger.LogDebug(
-                "Retrieved {Count} clients",
-                response.Count);
+        _logger.LogInformation(
+            "Retrieved {Count} clients",
+            response.Count);
 
-            return response.AsReadOnly();
+        return response.AsReadOnly();
     }
     /// <inheritdoc/>
     public async Task<PaginatedResponse<ClientResponse>> ListPaginatedAsync(
         int start = 0,
-        int length = 50,
+        int length = 100,
         string? search = null,
         CancellationToken cancellationToken = default)
     {
@@ -128,28 +127,28 @@ public sealed class ClientService : IClientService
             search ?? "(none)");
 
 
-            var queryParams = new Dictionary<string, string?>
-            {
-                ["start"] = start.ToString(),
-                ["length"] = length.ToString()
-            };
+        var queryParams = new Dictionary<string, string?>
+        {
+            ["start"] = start.ToString(),
+            ["length"] = length.ToString()
+        };
 
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                queryParams["search"] = search;
-            }
+        if (!string.IsNullOrWhiteSpace(search))
+        {
+            queryParams["search"] = search;
+        }
 
-            var response = await _httpClient.GetAsync<PaginatedResponse<ClientResponse>>(
-                BaseEndpointPaginated,
-                queryParams,
-                cancellationToken);
+        var response = await _httpClient.GetAsync<PaginatedResponse<ClientResponse>>(
+            BaseEndpointPaginated,
+            queryParams,
+            cancellationToken);
 
-            _logger.LogDebug(
-                "Retrieved {Count} of {Total} clients",
-                response.recordsFiltered,
-                response.recordsTotal);
+        _logger.LogInformation(
+            "Retrieved {Count} of {Total} clients",
+            response.recordsFiltered,
+            response.recordsTotal);
 
-            return response;
+        return response;
 
     }
 
@@ -163,23 +162,22 @@ public sealed class ClientService : IClientService
         ArgumentNullException.ThrowIfNull(request);
         ValidateUpdateRequest(request);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Updating client with ID: {ClientId}",
             clientId);
 
-            var endpoint = $"{BaseEndpoint}/{clientId}";
-            var response = await _httpClient.PutAsync<ClientResponse>(
-                endpoint,
-                request,
-                cancellationToken);
+        var endpoint = $"{BaseEndpoint}/{clientId}";
+        var response = await _httpClient.PutAsync<ClientResponse>(
+            endpoint,
+            request,
+            cancellationToken);
 
-            _logger.LogInformation(
-                "Client updated successfully: {ClientId} - {Rfc}",
-                request.Id,
-                request.Rfc);
+        _logger.LogInformation(
+            "Client updated successfully: {ClientId} - {Rfc}",
+            request.Id,
+            request.Rfc);
 
-            return response;
-
+        return response;
     }
 
     /// <inheritdoc/>
@@ -189,20 +187,20 @@ public sealed class ClientService : IClientService
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(clientId);
 
-        _logger.LogInformation(
+        _logger.LogDebug(
             "Deleting client with ID: {ClientId}",
             clientId);
 
 
-            var endpoint = $"{BaseEndpoint}/{clientId}";
-            await _httpClient.DeleteAsync(endpoint, cancellationToken);
+        var endpoint = $"{BaseEndpoint}/{clientId}";
+        await _httpClient.DeleteAsync(endpoint, cancellationToken);
 
-            _logger.LogInformation(
-                "Client deleted successfully: {ClientId}",
-                clientId);
+        _logger.LogInformation(
+            "Client deleted successfully: {ClientId}",
+            clientId);
     }
 
-  
+
 
     #region Validation
 
@@ -295,4 +293,6 @@ public sealed class ClientService : IClientService
     }
 
     #endregion
+
+    
 }
