@@ -7,4 +7,5 @@
     <Project Path="src/Facturama.Sdk.DependencyInjection/Facturama.Sdk.DependencyInjection.csproj" />
     <Project Path="src/Facturama.Sdk/Facturama.Sdk.csproj" />
   </Folder>
+  <Project Path="tests/Facturama.Sdk.Tests.Unit/Facturama.Sdk.Tests.Unit.csproj" />
 </Solution>
