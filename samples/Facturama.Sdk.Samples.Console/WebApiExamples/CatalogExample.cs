@@ -12,7 +12,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         private readonly IFacturamaClient _facturama;
 
         public string Name => "6";
-        public string Description => "Catálogos de códigos postales";
+        public string Description => "Catálogos";
 
         public CatalogExample(IFacturamaClient facturama)
         {

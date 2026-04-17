@@ -45,7 +45,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"  - [{serie.Name}] {serie.Folio} ({serie.Description})");
             }
-            Console.ReadLine();
+
         }
 
         public async Task CreateSerieExample()
@@ -60,7 +60,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
                 Folio = 1
             });
             Console.WriteLine($"Serie creada: {serie.Name} - {serie.Description}");
-            Console.ReadLine();
+
         }
 
         public async Task DeleteSerieExample()
@@ -70,7 +70,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             string name = "A";
             await _facturama.Series.DeleteSerieAsync(Id);
             Console.WriteLine($"Serie eliminada: {name}");
-            Console.ReadLine();
         }
     }
 }

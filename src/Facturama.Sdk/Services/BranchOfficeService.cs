@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Facturama.Sdk.Services;
 
+/// <summary>
+/// Service for managing branch office operations.
+/// </summary>
 public sealed class BranchOfficeService : IBranchOfficeService
 {
     private const string BaseEndpoint = "BranchOffice";
@@ -116,7 +119,7 @@ public sealed class BranchOfficeService : IBranchOfficeService
         BranchOfficeRequest branchOfficeRequest,
         CancellationToken cancellation = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(branchOfficeId);
+        if(string.IsNullOrEmpty(branchOfficeId)) throw new ArgumentNullException(nameof(branchOfficeId));
         ArgumentNullException.ThrowIfNull(branchOfficeRequest);
 
         _logger.LogDebug(

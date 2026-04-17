@@ -11,7 +11,7 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public  string? ProductId { get; set; }
 
         [JsonPropertyName("ProductCode")]
-        public required string ProductCode { get; set; }
+        public  string ProductCode { get; set; }
 
         [JsonPropertyName("SKU")]
         public string? SKU { get; set; }

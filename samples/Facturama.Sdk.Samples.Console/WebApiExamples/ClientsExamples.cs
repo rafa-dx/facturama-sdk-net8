@@ -2,6 +2,7 @@
 using Facturama.Sdk.Core.Abstractions;
 using Facturama.Sdk.Core.Exceptions;
 using Facturama.Sdk.Core.Models.Common;
+using System.Text.Json.Serialization;
 
 
 
@@ -154,7 +155,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var clientId = "J_uWmWVdg-DJLoR1noHAbQ2";
             await _facturama.Clients.DeleteAsync(clientId);
             Console.WriteLine($"Cliente con ID {clientId} eliminado.");
-            Console.ReadLine();
         }
         public async Task GetClientByIdExample()
         {

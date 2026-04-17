@@ -1,6 +1,4 @@
-﻿using Facturama.Sdk.Core.Enums;
-using Facturama.Sdk.Core.Models.Complements;
-using System.ComponentModel.DataAnnotations;
+﻿using Facturama.Sdk.Core.Models.Complements;
 using System.Text.Json.Serialization;
 
 
@@ -12,7 +10,6 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string NameId { get; set; }
 
         [JsonPropertyName("Folio")]
-        [Required]
         public string Folio { get; set; }
 
         [JsonPropertyName("Serie")]
@@ -34,7 +31,6 @@ namespace Facturama.Sdk.Core.Models.Cfdi
         public string ExpeditionPlace { get; set; }
 
         [JsonPropertyName("Date")]
-        [Required]
         public string Date { get; set; }
 
         [JsonPropertyName("PaymentConditions")]
@@ -66,7 +62,7 @@ namespace Facturama.Sdk.Core.Models.Cfdi
 
 
         [JsonPropertyName("Receiver")]
-        public required Receiver Receiver { get; set; }
+        public  Receiver Receiver { get; set; }
 
         [JsonPropertyName("Items")]
         public List<Item> Items { get; set; }

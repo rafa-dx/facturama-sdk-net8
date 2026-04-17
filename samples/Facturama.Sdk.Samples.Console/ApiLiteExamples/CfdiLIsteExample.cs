@@ -32,13 +32,13 @@ namespace Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples
             try
             {
                 //await UploadCsdApiLiteExample();
-                //await CreateCfdiExample();
-                //await ConsultExample();
-                //await ListCfdiExample();
-                //await StatusSatExample();
-                //await DowndloadPdfExample();
-                //await CancelExample();
-                //await SendEmailExample();
+                await CreateCfdiExample();
+                await ConsultExample();
+                await ListCfdiExample();
+                await StatusSatExample();
+                await DowndloadPdfExample();
+                await CancelExample();
+                await SendEmailExample();
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace Facturama.Sdk.Samples.ConsoleApp.ApiLiteExamples
                 ExpeditionPlace = "78000",
                 OrderNumber = "TEST-001",
                 Currency = "MXN",
-                Date = "2026-03-17T21:42:24",
+                //Date = "2026-03-17T21:42:24",
                 PaymentConditions = "CREDITO A SIETE DIAS",
                 Observations = "Elemento Observaciones solo visible en PDF",
                 Issuer = new Issuer

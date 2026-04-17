@@ -64,7 +64,10 @@ public sealed class ClientService : IClientService
         string clientId,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(clientId);
+        if(string.IsNullOrWhiteSpace(clientId))
+        {
+            throw new ArgumentException("Client ID cannot be null or whitespace.", nameof(clientId));
+        }
 
         _logger.LogDebug("Retrieving client with ID: {ClientId}", clientId);
 
@@ -158,7 +161,10 @@ public sealed class ClientService : IClientService
         ClientRequest request,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(clientId);
+        if(string.IsNullOrWhiteSpace(clientId))
+        {
+            throw new ArgumentException("Client ID cannot be null or whitespace.", nameof(clientId));
+        }
         ArgumentNullException.ThrowIfNull(request);
         ValidateUpdateRequest(request);
 
@@ -185,7 +191,10 @@ public sealed class ClientService : IClientService
         string clientId,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(clientId);
+        if(string.IsNullOrWhiteSpace(clientId))
+        {
+            throw new ArgumentException("Client ID cannot be null or whitespace.", nameof(clientId));
+        }
 
         _logger.LogDebug(
             "Deleting client with ID: {ClientId}",

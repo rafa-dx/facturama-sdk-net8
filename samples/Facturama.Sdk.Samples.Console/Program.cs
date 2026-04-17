@@ -37,7 +37,6 @@ try {
             // Registrar la aplicación principal
             services.AddTransient<Application>();
             //WebAPIExamples
-            //services.AddTransient<ClientExamples>();
             services.AddTransient<IExample, ClientsExamples>();
             services.AddTransient<IExample, ProductsExample>();
             services.AddTransient<IExample, BranchOfficeExample>();

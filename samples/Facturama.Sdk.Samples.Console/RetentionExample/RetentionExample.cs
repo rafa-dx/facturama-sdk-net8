@@ -26,13 +26,13 @@ namespace Facturama.Sdk.Samples.ConsoleApp.RetentionExample
             Console.WriteLine("\n--- Ejemplo de creación de retention ---");
             try
             {
-                //await CreateRetentionExample();
-                //await CreateRetentionPTExample();
-                //await ConsultExample();
-                //await ListRetentionExample();
-                //await DowndloadPdfExample();
-                //await CancelExample();
-                //await SendEmailExample();
+                await CreateRetentionExample();
+                await CreateRetentionPTExample();
+                await ConsultExample();
+                await ListRetentionExample();
+                await DowndloadPdfExample();
+                await CancelExample();
+                await SendEmailExample();
             }
             catch (Exception ex)
             {

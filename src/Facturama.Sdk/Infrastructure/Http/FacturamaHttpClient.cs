@@ -48,7 +48,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         Dictionary<string, string?>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
         var url = BuildUrl(endpoint, queryParams);
         var stopwatch = Stopwatch.StartNew();
@@ -92,7 +92,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         Dictionary<string, string?>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
         ArgumentNullException.ThrowIfNull(request);
 
         var url = BuildUrl(endpoint, queryParams);
@@ -139,7 +139,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         object request,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if(string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
         ArgumentNullException.ThrowIfNull(request);
 
         var stopwatch = Stopwatch.StartNew();
@@ -184,7 +184,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         string endpoint,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
         var stopwatch = Stopwatch.StartNew();
 
@@ -228,7 +228,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         Dictionary<string, string?>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
         var url = BuildUrl(endpoint, queryParams);
         var stopwatch = Stopwatch.StartNew();
@@ -275,7 +275,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
         Dictionary<string, string>? queryParams = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
         var url = BuildUrl(endpoint, queryParams);
         var stopwatch = Stopwatch.StartNew();
@@ -325,7 +325,7 @@ public abstract class FacturamaHttpClient : IFacturamaHttpClient
     /// </summary>
     private static string BuildUrl(string endpoint, Dictionary<string, string>? queryParams)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(endpoint);
+        if (string.IsNullOrEmpty(endpoint)) throw new ArgumentNullException(nameof(endpoint));
 
         if (queryParams == null || queryParams.Count == 0)
             return endpoint;

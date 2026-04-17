@@ -51,7 +51,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             {
                 Console.WriteLine($"  - [{product.Id}] {product.Name} ({product.CodeProdServ}) - {product.Description}");
             }
-            Console.ReadLine();
 
         }
 
@@ -87,7 +86,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
 
             var request = await _facturama.Products.CreateAsync(newProduct);
             ConsoleHelper.Print(request);
-            Console.ReadLine();
         }
 
         public async Task ListPagedProductsExample()
@@ -99,7 +97,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             Console.WriteLine($"Total de productos: {productsPage.recordsFiltered}");
 
             ConsoleHelper.Print(productsPage);
-            Console.ReadLine();
 
         }
 
@@ -133,7 +130,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             };
 
             var request = await _facturama.Products.UpdateAsync(IdProduct, newProduct);
-            Console.ReadLine();
         }
 
 
@@ -147,11 +143,11 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
         }
 
         public async Task DeleteProductExample()
+        
         {
             var IdProduct = "bwgjY-M5QA9QMUQntGDvnQ2";
             await _facturama.Products.DeleteAsync(IdProduct);
             Console.WriteLine($"Producto con ID {IdProduct} eliminado correctamente.");
-            Console.ReadLine();
 
         }
     }

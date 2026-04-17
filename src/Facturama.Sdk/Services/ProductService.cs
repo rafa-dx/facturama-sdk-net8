@@ -20,7 +20,7 @@ public sealed class ProductService : IProductService
     private readonly IApiWebHttpClient _httpClient;
     private readonly ILogger<ProductService> _logger;
 
-    /// <summary
+    /// <summary>
     /// Inicia una nueva instancia de <see cref="ProductService"/>.
     /// </summary>
     /// <param name="httpClient">Cliente HTTP para realizar solicitudes a la API.</param>
@@ -65,7 +65,10 @@ public sealed class ProductService : IProductService
             string productId,
             CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(productId);
+        if(string.IsNullOrWhiteSpace(productId))
+        {
+            throw new ArgumentException("Product ID cannot be null or whitespace.", nameof(productId));
+        }
 
         _logger.LogDebug(
             "Retrieving product with ID: {ProductId}",
@@ -160,7 +163,10 @@ public sealed class ProductService : IProductService
         ProductRequest request,
         CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(productId);
+        if(string.IsNullOrWhiteSpace(productId))
+        {
+            throw new ArgumentException("Product ID cannot be null or whitespace.", nameof(productId));
+        }
         ArgumentNullException.ThrowIfNull(request);
 
         _logger.LogDebug(
@@ -186,7 +192,10 @@ public sealed class ProductService : IProductService
         string productId,
         CancellationToken cancelToken = default)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(productId);
+        if(string.IsNullOrWhiteSpace(productId))
+        {
+            throw new ArgumentException("Product ID cannot be null or whitespace.", nameof(productId));
+        }
 
         _logger.LogDebug(
             "Deleting product with ID: {ProductId}",

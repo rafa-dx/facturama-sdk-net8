@@ -4,12 +4,7 @@ using Facturama.Sdk.Core.Models.Requests;
 using Facturama.Sdk.Core.Models.Responses;
 using Facturama.Sdk.Core.Utilities;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Facturama.Sdk.Services
 {
@@ -62,7 +57,10 @@ namespace Facturama.Sdk.Services
             string cfdiId,
             CancellationToken cancellationToken = default)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(nameof(cfdiId));
+            if(string.IsNullOrWhiteSpace(cfdiId))
+            {
+                throw new ArgumentException("CFDI ID cannot be null or whitespace.", nameof(cfdiId));
+            }
 
             _logger.LogDebug("Retrieving Retentionwith ID {CfdiId}", cfdiId);
 
@@ -114,8 +112,15 @@ namespace Facturama.Sdk.Services
             string format,
             CancellationToken cancellationToken = default)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
-            ArgumentException.ThrowIfNullOrWhiteSpace(format);
+
+            if(string.IsNullOrWhiteSpace(cfdiId))
+            {
+                throw new ArgumentException("CFDI ID cannot be null or whitespace.", nameof(cfdiId));
+            }
+            if(string.IsNullOrWhiteSpace(format))
+            {
+                throw new ArgumentException("Format cannot be null or whitespace.", nameof(format));
+            }
 
             _logger.LogInformation(
                "Downloading CFDI file. Type: {FileType}, CFDI: {CfdiId}",
@@ -142,7 +147,10 @@ namespace Facturama.Sdk.Services
             string? uuidReplacement = null, 
             CancellationToken cancellationToken = default)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
+            if(string.IsNullOrWhiteSpace(cfdiId))
+            {
+                throw new ArgumentException("CFDI ID cannot be null or whitespace.", nameof(cfdiId));
+            }
 
             _logger.LogInformation(
                 "Cancelling CFDI: {CfdiId}, Type: retention, Motive: {Motive}",
@@ -177,8 +185,14 @@ namespace Facturama.Sdk.Services
             string email,
             CancellationToken cancellationToken = default)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(cfdiId);
-            ArgumentException.ThrowIfNullOrWhiteSpace(email);
+            if(string.IsNullOrWhiteSpace(cfdiId))
+            {
+                throw new ArgumentException("CFDI ID cannot be null or whitespace.", nameof(cfdiId));
+            }
+            if(string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException("Email cannot be null or whitespace.", nameof(email));
+            }
 
             _logger.LogInformation(
                 "Sending CFDI {CfdiId} to {Email}",

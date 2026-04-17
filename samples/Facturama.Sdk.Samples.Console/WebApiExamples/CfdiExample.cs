@@ -118,7 +118,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             };
             var response = await _facturama.Cfdis.CreateAsync(cfdiRequest);
             ConsoleHelper.Print(response);
-            Console.ReadLine();
 
         }
 
@@ -129,7 +128,6 @@ namespace Facturama.Sdk.Samples.ConsoleApp.WebApiExamples
             var consultResponse = await _facturama.Cfdis.GetAsync("8-EspIN3oKrMFj_ROmIvSw2");
             ConsoleHelper.Print(consultResponse);
             Console.WriteLine(consultResponse.Id);
-            Console.ReadLine();
 
         }
         public async Task ListCfdiExample()
