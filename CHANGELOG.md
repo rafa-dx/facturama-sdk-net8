@@ -4,7 +4,7 @@
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
-## [1.0.0] - 2026-04-28
+## [1.0.0-beta1] - 2026-04-17
 
 ### Agregado
 - Soporte completo para CFDI 4.0
